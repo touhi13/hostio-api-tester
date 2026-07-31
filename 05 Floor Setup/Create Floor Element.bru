@@ -1,0 +1,37 @@
+meta {
+  name: Create Floor Element
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/floor-elements
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "area_id": "{{area_id}}",
+      "type": "kitchen_area",
+      "label": "Kitchen",
+      "pos_x": 500,
+      "pos_y": 400,
+      "width": 220,
+      "height": 140
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("element_id", res.body.data.id);
+  }
+}

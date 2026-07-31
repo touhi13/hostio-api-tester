@@ -1,0 +1,25 @@
+meta {
+  name: Seat Party
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/waitlist/{{waitlist_id}}/seat
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "table_id": "{{table_id}}"
+  }
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Print Receipt
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}/receipt/print
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}

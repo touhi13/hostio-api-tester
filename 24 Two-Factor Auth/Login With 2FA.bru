@@ -1,0 +1,41 @@
+meta {
+  name: Login With 2FA
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/auth/login
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "email": "{{user_email}}",
+      "password": "{{user_password}}"
+  }
+}
+
+docs {
+  When 2FA is enabled, a plain email+password login returns
+  {requires_2fa: true, challenge_token, expires_in} and no token. Exchange
+  the challenge token plus an authenticator (or recovery) code at
+  POST /auth/2fa/challenge — the password is never re-submitted.
+
+  Optionally send device_token (from a previous "remember_device" exchange)
+  to skip the challenge on a trusted device.
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.token) {
+    bru.setEnvVar("token", res.body.data.token);
+  }
+  if (res.status === 200 && res.body.data && res.body.data.challenge_token) {
+    bru.setEnvVar("challenge_token", res.body.data.challenge_token);
+  }
+}

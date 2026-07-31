@@ -1,0 +1,35 @@
+meta {
+  name: Add Party
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/waitlist
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "guest_name": "Sarah B.",
+      "phone": "+15555550123",
+      "party_size": 2,
+      "quoted_minutes": 15,
+      "notes": "Window seat preferred"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("waitlist_id", res.body.data.id);
+  }
+}

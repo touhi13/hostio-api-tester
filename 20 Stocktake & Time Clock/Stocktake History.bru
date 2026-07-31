@@ -1,0 +1,19 @@
+meta {
+  name: Stocktake History
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/stocktakes
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

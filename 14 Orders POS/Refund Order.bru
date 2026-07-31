@@ -1,0 +1,27 @@
+meta {
+  name: Refund Order
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}/refund
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "method": "cash",
+      "amount": 10,
+      "reason": "Guest complaint"
+  }
+}

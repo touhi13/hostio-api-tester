@@ -1,0 +1,25 @@
+meta {
+  name: List Suppliers
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/suppliers
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.length) {
+    bru.setEnvVar("supplier_id", res.body.data[0].id);
+  }
+}

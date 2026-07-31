@@ -1,0 +1,21 @@
+meta {
+  name: Preview Invitation
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{base_url}}/api/v1/staff-invitations/{{invitation_token}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Public endpoint used by the accept screen: shows the restaurant name, the
+  offered role and whether an account already exists for the invited email.
+  Returns 404 when the invitation is unknown, expired or already accepted.
+}

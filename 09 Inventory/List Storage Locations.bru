@@ -1,0 +1,25 @@
+meta {
+  name: List Storage Locations
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/storage-locations
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.length) {
+    bru.setEnvVar("storage_id", res.body.data[0].id);
+  }
+}

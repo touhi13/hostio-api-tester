@@ -1,0 +1,25 @@
+meta {
+  name: Status
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/onboarding/status
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.restaurant_id) {
+    bru.setEnvVar("restaurant_id", res.body.data.restaurant_id);
+  }
+}

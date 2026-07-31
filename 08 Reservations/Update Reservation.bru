@@ -1,0 +1,25 @@
+meta {
+  name: Update Reservation
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/reservations/{{reservation_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "party_size": 5
+  }
+}

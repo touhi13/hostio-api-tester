@@ -1,0 +1,23 @@
+meta {
+  name: Wait Times
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/analytics/wait-times
+  body: none
+  auth: bearer
+}
+
+params:query {
+  days: 7
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

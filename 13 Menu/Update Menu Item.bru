@@ -1,0 +1,25 @@
+meta {
+  name: Update Menu Item
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/items/{{menu_item_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "price": 23
+  }
+}

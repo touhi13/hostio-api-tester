@@ -1,0 +1,21 @@
+meta {
+  name: Dashboard
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/v1/admin/dashboard
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}
+
+docs {
+  Platform KPIs: restaurant/subscription counts, MRR, expiring trials,
+  30-day order volume and the top restaurants by revenue.
+}

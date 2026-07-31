@@ -1,0 +1,25 @@
+meta {
+  name: Update Category
+  type: http
+  seq: 11
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/categories/{{category_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Herbs & Spices"
+  }
+}

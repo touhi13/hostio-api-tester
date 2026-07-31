@@ -1,0 +1,38 @@
+meta {
+  name: Accept Invitation
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/api/v1/staff-invitations/{{invitation_token}}/accept
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "first_name": "Nina",
+      "last_name": "Host",
+      "password": "Password1"
+  }
+}
+
+docs {
+  Existing account: send only the account password (identity proof).
+  New account: send first_name, last_name and a new password - the account is
+  created already-verified.
+
+  On success the membership is attached and a bearer token is returned, so the
+  new staff member is signed in immediately.
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.token) {
+    bru.setEnvVar("token", res.body.data.token);
+  }
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Reactivate Restaurant
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/restaurants/{{restaurant_id}}/reactivate
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{admin_token}}
+}

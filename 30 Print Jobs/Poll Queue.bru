@@ -1,0 +1,24 @@
+meta {
+  name: Poll Queue
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/print-jobs?station=kitchen
+  body: none
+  auth: none
+}
+
+params:query {
+  station: kitchen
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  Local print agent polls queued jobs (oldest first). Omit station to get all.
+}

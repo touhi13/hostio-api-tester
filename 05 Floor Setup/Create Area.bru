@@ -1,0 +1,31 @@
+meta {
+  name: Create Area
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/areas
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Rooftop"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("area_id", res.body.data.id);
+  }
+}

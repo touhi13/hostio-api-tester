@@ -1,0 +1,40 @@
+meta {
+  name: Step 1 - Restaurant Info
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/onboarding/restaurant
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "The Golden Spoon II",
+      "address": "123 Murphy St",
+      "city": "Denver",
+      "state": "CO",
+      "zip": "80202",
+      "phone": "+1 (555) 555-7890",
+      "timezone": "America/Denver",
+      "restaurant_type": "Casual Dining",
+      "opens_at": "10:00",
+      "closes_at": "22:00"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("restaurant_id", res.body.data.id);
+  }
+}

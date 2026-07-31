@@ -1,0 +1,24 @@
+meta {
+  name: Revoke Invitation
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/staff/invitations/{{invitation_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Revokes a pending invitation; the emailed link stops working immediately.
+  Managers cannot revoke owner/manager-role invitations (owner-only).
+}

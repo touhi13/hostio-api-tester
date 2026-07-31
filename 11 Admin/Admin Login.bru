@@ -1,0 +1,36 @@
+meta {
+  name: Admin Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/auth/login
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "email": "{{admin_email}}",
+      "password": "{{admin_password}}"
+  }
+}
+
+docs {
+  With admin 2FA enabled this returns {requires_2fa, challenge_token} and no
+  token; exchange it at admin/auth/2fa/challenge.
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.token) {
+    bru.setEnvVar("admin_token", res.body.data.token);
+  }
+  if (res.status === 200 && res.body.data && res.body.data.challenge_token) {
+    bru.setEnvVar("admin_challenge_token", res.body.data.challenge_token);
+  }
+}

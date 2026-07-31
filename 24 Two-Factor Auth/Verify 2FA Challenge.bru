@@ -1,0 +1,42 @@
+meta {
+  name: Verify 2FA Challenge
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/auth/2fa/challenge
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "challenge_token": "{{challenge_token}}",
+      "code": "123456",
+      "remember_device": false
+  }
+}
+
+docs {
+  Exchanges the short-lived challenge_token from the login response plus a
+  6 digit TOTP code (or a single-use recovery code) for the real bearer
+  token. Wrong codes do not consume the challenge but count towards a
+  5-attempt per-account lockout.
+
+  Set remember_device to true to receive a device_token that skips the 2FA
+  challenge on this device for 30 days (pass it as device_token on login).
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.token) {
+    bru.setEnvVar("token", res.body.data.token);
+  }
+  if (res.status === 200 && res.body.data && res.body.data.device_token) {
+    bru.setEnvVar("device_token", res.body.data.device_token);
+  }
+}

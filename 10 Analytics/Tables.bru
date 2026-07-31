@@ -1,0 +1,23 @@
+meta {
+  name: Tables
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/analytics/tables
+  body: none
+  auth: bearer
+}
+
+params:query {
+  days: 30
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

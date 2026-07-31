@@ -1,0 +1,29 @@
+meta {
+  name: Create Supplier
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/suppliers
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Peak Produce",
+      "contact_name": "Sam Green",
+      "email": "sam@peakproduce.com",
+      "phone": "+15555550789",
+      "account_number": "445566"
+  }
+}

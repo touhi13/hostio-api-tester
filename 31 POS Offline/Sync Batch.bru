@@ -1,0 +1,31 @@
+meta {
+  name: Sync Batch
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/pos-sync
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "operations": [
+          {"op_id": "uuid-1", "type": "create_order", "payload": {"type": "takeaway", "client_ref": "local-1"}},
+          {"op_id": "uuid-2", "type": "add_items", "payload": {"order_ref": "local-1", "items": [{"menu_item_id": 1, "quantity": 1}]}},
+          {"op_id": "uuid-3", "type": "send", "payload": {"order_ref": "local-1"}}
+      ]
+  }
+}
+
+docs {
+  Ops replay in order; duplicates collapse on op_id; a failed op reports
+  {status: failed, error_code, errors} without aborting the batch.
+}

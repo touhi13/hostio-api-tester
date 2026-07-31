@@ -1,0 +1,19 @@
+meta {
+  name: Get Recipe & Food Cost
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/items/{{menu_item_id}}/recipe
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

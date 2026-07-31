@@ -1,0 +1,22 @@
+meta {
+  name: Ack Job
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/print-jobs/1/ack
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "status": "printed"
+  }
+}

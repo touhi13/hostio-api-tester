@@ -1,0 +1,24 @@
+meta {
+  name: Timesheet
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/time-clock/timesheet
+  body: none
+  auth: bearer
+}
+
+params:query {
+  from: 
+  to: 
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

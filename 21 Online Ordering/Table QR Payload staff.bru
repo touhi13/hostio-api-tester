@@ -1,0 +1,25 @@
+meta {
+  name: Table QR Payload (staff)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/tables/{{table_id}}/qr
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.qr_token) {
+    bru.setEnvVar("table_qr_token", res.body.data.qr_token);
+  }
+}

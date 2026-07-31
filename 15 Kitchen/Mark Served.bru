@@ -1,0 +1,19 @@
+meta {
+  name: Mark Served
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/kitchen/items/{{order_item_id}}/served
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

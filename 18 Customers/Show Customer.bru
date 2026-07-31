@@ -1,0 +1,19 @@
+meta {
+  name: Show Customer
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/customers/{{customer_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

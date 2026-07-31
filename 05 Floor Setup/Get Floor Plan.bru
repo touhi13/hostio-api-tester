@@ -1,0 +1,28 @@
+meta {
+  name: Get Floor Plan
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/floor-plan
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.length) {
+    bru.setEnvVar("area_id", res.body.data[0].id);
+    if (res.body.data[0].tables && res.body.data[0].tables.length) {
+      bru.setEnvVar("table_id", res.body.data[0].tables[0].id);
+    }
+  }
+}

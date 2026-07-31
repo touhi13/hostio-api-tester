@@ -1,0 +1,19 @@
+meta {
+  name: Mark Read
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/notifications/{{notification_id}}/read
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

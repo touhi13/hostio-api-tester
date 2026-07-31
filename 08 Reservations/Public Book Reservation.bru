@@ -1,0 +1,30 @@
+meta {
+  name: Public Book Reservation
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{base_url}}/api/v1/public/restaurants/{{restaurant_slug}}/reservations
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "guest_name": "Walk-in Wanda",
+      "phone": "+15550001111",
+      "email": "wanda@example.com",
+      "party_size": 4,
+      "reserved_at": "2026-08-05 19:00:00"
+  }
+}
+
+docs {
+  Guest-facing booking. Validated against the restaurant's operating hours
+  and a future slot; the restaurant is notified to confirm.
+}

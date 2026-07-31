@@ -1,0 +1,24 @@
+meta {
+  name: List Subscriptions
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{base_url}}/api/v1/admin/subscriptions
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: 
+  per_page: 15
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{admin_token}}
+}

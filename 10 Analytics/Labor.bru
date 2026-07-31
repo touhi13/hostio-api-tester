@@ -1,0 +1,25 @@
+meta {
+  name: Labor
+  type: http
+  seq: 20
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/analytics/labor?days=30
+  body: none
+  auth: none
+}
+
+params:query {
+  days: 30
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  Hours worked and labor cost (from staff hourly rates) vs sales, per day and
+  per staff member.
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Close Shift
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/{{shift_id}}/close
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "counted_cash": 220
+  }
+}

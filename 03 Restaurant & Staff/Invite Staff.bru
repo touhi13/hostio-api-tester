@@ -1,0 +1,43 @@
+meta {
+  name: Invite Staff
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/staff
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "email": "nina@example.com",
+      "role": "host"
+  }
+}
+
+docs {
+  Creates a pending invitation (consent flow) - nothing is attached until the
+  invitee accepts the emailed link. Managers can invite host/server/chef;
+  owner/manager roles are owner-only.
+
+  The accept token is only sent by email. In local dev (MAIL_MAILER=log) find
+  it in storage/logs/laravel.log and put it into the invitation_token env var.
+
+  Re-inviting the same email rotates the token and replaces the pending invite.
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("invitation_id", res.body.data.id);
+  }
+}

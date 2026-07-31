@@ -1,0 +1,22 @@
+meta {
+  name: Extend Trial
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/subscriptions/{{subscription_id}}/extend-trial
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}
+
+body:json {
+  {
+      "days": 14
+  }
+}

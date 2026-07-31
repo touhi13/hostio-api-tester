@@ -1,0 +1,25 @@
+meta {
+  name: List Audit Logs
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/audit-logs
+  body: none
+  auth: bearer
+}
+
+params:query {
+  action: 
+  user_id: 
+  per_page: 25
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

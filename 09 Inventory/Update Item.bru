@@ -1,0 +1,26 @@
+meta {
+  name: Update Item
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/items/{{item_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "ideal_qty": 30,
+      "unit_price": 2.75
+  }
+}

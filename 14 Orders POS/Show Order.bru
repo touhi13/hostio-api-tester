@@ -1,0 +1,25 @@
+meta {
+  name: Show Order
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.items && res.body.data.items.length) {
+    bru.setEnvVar("order_item_id", res.body.data.items[0].id);
+  }
+}

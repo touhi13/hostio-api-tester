@@ -1,0 +1,25 @@
+meta {
+  name: Update Floor Element
+  type: http
+  seq: 12
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/floor-elements/{{element_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "label": "Main Kitchen"
+  }
+}

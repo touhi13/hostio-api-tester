@@ -1,0 +1,16 @@
+meta {
+  name: Check Balance
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/gift-cards/{{gift_card_code}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}

@@ -1,0 +1,32 @@
+meta {
+  name: Create Order (Dine-in)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "dine_in",
+      "table_id": "{{table_id}}"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("order_id", res.body.data.id);
+  }
+}

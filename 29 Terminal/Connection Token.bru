@@ -1,0 +1,20 @@
+meta {
+  name: Connection Token
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/terminal/connection-token
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  Requires the card-terminals feature flag and a connected Stripe account.
+}

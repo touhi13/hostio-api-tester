@@ -1,0 +1,20 @@
+meta {
+  name: Deactivate User
+  type: http
+  seq: 31
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/users/{{user_id}}/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}
+
+docs {
+  Deactivates the account and revokes all its tokens + trusted devices.
+}

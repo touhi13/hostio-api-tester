@@ -1,0 +1,19 @@
+meta {
+  name: Current Subscription
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/billing/subscription
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,31 @@
+meta {
+  name: Create Campaign
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/campaigns
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "name": "Loyalty blast",
+      "subject": "A treat for our regulars",
+      "body": "Come back this week for a free dessert on us!",
+      "segment": { "min_visits": 3, "last_visit_within_days": 90 }
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("campaign_id", res.body.data.id);
+  }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Send Campaign
+  type: http
+  seq: 21
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/campaigns/{{campaign_id}}/send
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  Queues the campaign email to every opted-in customer matching the segment.
+}

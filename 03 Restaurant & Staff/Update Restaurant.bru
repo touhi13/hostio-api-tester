@@ -1,0 +1,35 @@
+meta {
+  name: Update Restaurant
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "The Golden Spoon",
+      "max_party_size": 10,
+      "avg_turn_time_minutes": 55,
+      "operating_hours": [
+          {
+              "day_of_week": 1,
+              "is_open": true,
+              "opens_at": "11:00",
+              "closes_at": "23:00"
+          }
+      ]
+  }
+}

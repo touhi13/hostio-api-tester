@@ -1,0 +1,16 @@
+meta {
+  name: Reactivate User
+  type: http
+  seq: 32
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/users/{{user_id}}/reactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}

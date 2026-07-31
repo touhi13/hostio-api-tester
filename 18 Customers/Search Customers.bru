@@ -1,0 +1,30 @@
+meta {
+  name: Search Customers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/customers
+  body: none
+  auth: bearer
+}
+
+params:query {
+  search: 
+  per_page: 15
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.items.length) {
+    bru.setEnvVar("customer_id", res.body.data.items[0].id);
+  }
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Update Staff Role
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/staff/{{staff_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "role": "manager"
+  }
+}

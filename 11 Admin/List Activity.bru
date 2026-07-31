@@ -1,0 +1,20 @@
+meta {
+  name: List Activity
+  type: http
+  seq: 40
+}
+
+get {
+  url: {{base_url}}/api/v1/admin/activity
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}
+
+docs {
+  Platform admin audit trail. Filter by action or admin_id.
+}

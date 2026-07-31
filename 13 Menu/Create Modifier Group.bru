@@ -1,0 +1,43 @@
+meta {
+  name: Create Modifier Group
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/items/{{menu_item_id}}/modifier-groups
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Size",
+      "min_select": 1,
+      "max_select": 1,
+      "options": [
+          {
+              "name": "Regular",
+              "price_delta": 0
+          },
+          {
+              "name": "Large",
+              "price_delta": 4
+          }
+      ]
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("modifier_group_id", res.body.data.id);
+  }
+}

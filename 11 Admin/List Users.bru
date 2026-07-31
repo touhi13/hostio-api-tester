@@ -1,0 +1,26 @@
+meta {
+  name: List Users
+  type: http
+  seq: 30
+}
+
+get {
+  url: {{base_url}}/api/v1/admin/users?search=&status=
+  body: none
+  auth: none
+}
+
+params:query {
+  search: 
+  status: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}
+
+docs {
+  Platform user directory. Filter by search (name/email) and status
+  (active|inactive). Cursor-independent offset pagination via per_page.
+}

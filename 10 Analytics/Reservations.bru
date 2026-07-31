@@ -1,0 +1,23 @@
+meta {
+  name: Reservations
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/analytics/reservations
+  body: none
+  auth: bearer
+}
+
+params:query {
+  month: 2026-07
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

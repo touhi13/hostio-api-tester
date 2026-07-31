@@ -1,0 +1,30 @@
+meta {
+  name: Disable 2FA
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/auth/2fa/disable
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "password": "{{user_password}}"
+  }
+}
+
+docs {
+  Turns 2FA off after re-authenticating with the account password. The secret
+  and remaining recovery codes are discarded.
+}

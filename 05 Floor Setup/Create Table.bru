@@ -1,0 +1,35 @@
+meta {
+  name: Create Table
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/tables
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "area_id": "{{area_id}}",
+      "seats": 4,
+      "shape": "square",
+      "pos_x": 100,
+      "pos_y": 100
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("table_id", res.body.data.id);
+  }
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Adjust Stock
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/items/{{item_id}}/stock
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "adjust",
+      "quantity": 12,
+      "note": "Physical count correction"
+  }
+}

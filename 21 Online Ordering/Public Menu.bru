@@ -1,0 +1,15 @@
+meta {
+  name: Public Menu
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/v1/public/menu/{{restaurant_slug}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}

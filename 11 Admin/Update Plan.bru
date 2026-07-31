@@ -1,0 +1,25 @@
+meta {
+  name: Update Plan
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{base_url}}/api/v1/admin/plans/{{plan_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{admin_token}}
+}
+
+body:json {
+  {
+      "price_monthly": 80
+  }
+}

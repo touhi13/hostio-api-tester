@@ -1,0 +1,38 @@
+meta {
+  name: Create Customer
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/customers
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Emily Stone",
+      "phone": "+15551230001",
+      "email": "emily@example.com",
+      "is_vip": true,
+      "tags": [
+          "vip",
+          "allergy:nuts"
+      ]
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("customer_id", res.body.data.id);
+  }
+}

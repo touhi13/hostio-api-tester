@@ -1,0 +1,27 @@
+meta {
+  name: Seat Walk-in
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/tables/{{table_id}}/seat
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "source": "walk_in",
+      "guest_name": "Walk-in Wally",
+      "party_size": 2
+  }
+}

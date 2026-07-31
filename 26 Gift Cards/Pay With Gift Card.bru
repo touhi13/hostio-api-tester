@@ -1,0 +1,24 @@
+meta {
+  name: Pay With Gift Card
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}/payments
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "method": "gift_card",
+      "amount": 20,
+      "gift_card_code": "{{gift_card_code}}"
+  }
+}

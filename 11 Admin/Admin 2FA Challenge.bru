@@ -1,0 +1,34 @@
+meta {
+  name: Admin 2FA Challenge
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/auth/2fa/challenge
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "challenge_token": "{{admin_challenge_token}}",
+      "code": "123456",
+      "remember_device": false
+  }
+}
+
+docs {
+  Exchange the admin login challenge plus a TOTP/recovery code for the admin
+  bearer token.
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.token) {
+    bru.setEnvVar("admin_token", res.body.data.token);
+  }
+}

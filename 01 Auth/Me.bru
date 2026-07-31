@@ -1,0 +1,25 @@
+meta {
+  name: Me
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/api/v1/auth/me
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.restaurants && res.body.data.restaurants.length) {
+    bru.setEnvVar("restaurant_id", res.body.data.restaurants[0].id);
+  }
+}

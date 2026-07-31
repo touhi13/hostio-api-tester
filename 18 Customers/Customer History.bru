@@ -1,0 +1,19 @@
+meta {
+  name: Customer History
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/customers/{{customer_id}}/history
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

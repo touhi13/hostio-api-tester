@@ -1,0 +1,26 @@
+meta {
+  name: Update Customer
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/customers/{{customer_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "notes": "Prefers window seating",
+      "is_vip": true
+  }
+}

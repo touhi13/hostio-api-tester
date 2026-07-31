@@ -1,0 +1,36 @@
+meta {
+  name: Create Reservation
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/reservations
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "guest_name": "Emily S.",
+      "phone": "+15555550456",
+      "email": "emily@example.com",
+      "party_size": 4,
+      "reserved_at": "2026-08-01 19:30:00",
+      "notes": "Anniversary dinner"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("reservation_id", res.body.data.id);
+  }
+}

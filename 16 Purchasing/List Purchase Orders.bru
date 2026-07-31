@@ -1,0 +1,29 @@
+meta {
+  name: List Purchase Orders
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/purchasing/purchase-orders
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: 
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.length) {
+    bru.setEnvVar("po_id", res.body.data[0].id);
+  }
+}

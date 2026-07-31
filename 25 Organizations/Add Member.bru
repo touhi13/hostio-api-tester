@@ -1,0 +1,28 @@
+meta {
+  name: Add Member
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/api/v1/organizations/{{organization_id}}/members
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "email": "analyst@example.com",
+      "role": "analyst"
+  }
+}
+
+docs {
+  Org-owner only. Roles: owner | analyst. The email must already have a
+  Hostio account. The last owner can never be removed.
+}

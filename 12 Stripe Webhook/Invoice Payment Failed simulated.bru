@@ -1,0 +1,27 @@
+meta {
+  name: Invoice Payment Failed (simulated)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/webhooks/stripe
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "type": "invoice.payment_failed",
+      "data": {
+          "object": {
+              "object": "invoice",
+              "subscription": "sub_demo123"
+          }
+      }
+  }
+}

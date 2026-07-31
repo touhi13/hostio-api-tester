@@ -1,0 +1,27 @@
+meta {
+  name: Redeem Points
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}/redeem-points
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "points": 100
+  }
+}
+
+docs {
+  Requires loyalty_enabled on the restaurant and a customer on the order.
+  Applies a flat discount worth points x loyalty_redeem_value.
+}

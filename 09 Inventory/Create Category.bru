@@ -1,0 +1,31 @@
+meta {
+  name: Create Category
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/categories
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Spices"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("category_id", res.body.data.id);
+  }
+}

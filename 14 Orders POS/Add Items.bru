@@ -1,0 +1,37 @@
+meta {
+  name: Add Items
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}/items
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "items": [
+          {
+              "menu_item_id": "{{menu_item_id}}",
+              "quantity": 2,
+              "notes": "No onions"
+          }
+      ]
+  }
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.items && res.body.data.items.length) {
+    bru.setEnvVar("order_item_id", res.body.data.items[res.body.data.items.length - 1].id);
+  }
+}

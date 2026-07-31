@@ -1,0 +1,23 @@
+meta {
+  name: Shift History
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts
+  body: none
+  auth: bearer
+}
+
+params:query {
+  per_page: 15
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Delete Modifier Group
+  type: http
+  seq: 13
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/modifier-groups/{{modifier_group_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

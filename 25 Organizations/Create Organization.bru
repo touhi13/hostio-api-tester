@@ -1,0 +1,28 @@
+meta {
+  name: Create Organization
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/v1/organizations
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "name": "Golden Hospitality Group"
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("organization_id", res.body.data.id);
+  }
+}

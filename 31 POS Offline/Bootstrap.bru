@@ -1,0 +1,21 @@
+meta {
+  name: Bootstrap
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/pos-bootstrap
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  One payload for the POS to cache offline: menu, tables, open orders,
+  current register shift and pricing settings.
+}

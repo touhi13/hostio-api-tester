@@ -1,0 +1,25 @@
+meta {
+  name: Current Shift
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/current
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.shift) {
+    bru.setEnvVar("shift_id", res.body.data.shift.id);
+  }
+}

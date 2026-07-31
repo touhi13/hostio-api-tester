@@ -1,0 +1,32 @@
+meta {
+  name: Checkout Completed (simulated)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/v1/webhooks/stripe
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "type": "checkout.session.completed",
+      "data": {
+          "object": {
+              "object": "checkout.session",
+              "customer": "cus_demo123",
+              "subscription": "sub_demo123",
+              "metadata": {
+                  "restaurant_id": "{{restaurant_id}}",
+                  "plan_id": "{{plan_id}}"
+              }
+          }
+      }
+  }
+}

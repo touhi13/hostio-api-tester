@@ -1,0 +1,25 @@
+meta {
+  name: Checkout (Trial or Paid)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/billing/checkout
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "plan_id": "{{plan_id}}"
+  }
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Restock Item
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/items/{{item_id}}/stock
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "restock",
+      "quantity": 25,
+      "note": "Weekly delivery"
+  }
+}

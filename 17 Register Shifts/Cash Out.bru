@@ -1,0 +1,27 @@
+meta {
+  name: Cash Out
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/{{shift_id}}/cash-movements
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "cash_out",
+      "amount": 30,
+      "reason": "Paid supplier in cash"
+  }
+}

@@ -1,0 +1,22 @@
+meta {
+  name: Attach Restaurant
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/organizations/{{organization_id}}/restaurants
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "restaurant_id": {{restaurant_id}}
+  }
+}

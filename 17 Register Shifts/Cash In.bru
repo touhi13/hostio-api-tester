@@ -1,0 +1,27 @@
+meta {
+  name: Cash In
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/{{shift_id}}/cash-movements
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "cash_in",
+      "amount": 50,
+      "reason": "Change from bank"
+  }
+}

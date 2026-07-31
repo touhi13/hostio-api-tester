@@ -1,0 +1,16 @@
+meta {
+  name: Delete Admin
+  type: http
+  seq: 44
+}
+
+delete {
+  url: {{base_url}}/api/v1/admin/admins/{{admin_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}

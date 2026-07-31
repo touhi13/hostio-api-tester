@@ -1,0 +1,27 @@
+meta {
+  name: Split Check
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}/split
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "order_item_ids": [
+          "{{order_item_id}}"
+      ]
+  }
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Create Admin
+  type: http
+  seq: 42
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/admins
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}
+
+body:json {
+  {
+      "name": "Second Admin",
+      "email": "second@hostio.io",
+      "password": "Sup3r-Str0ng-Pass1",
+      "password_confirmation": "Sup3r-Str0ng-Pass1"
+  }
+}

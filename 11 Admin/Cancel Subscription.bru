@@ -1,0 +1,16 @@
+meta {
+  name: Cancel Subscription
+  type: http
+  seq: 22
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/subscriptions/{{subscription_id}}/cancel
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}

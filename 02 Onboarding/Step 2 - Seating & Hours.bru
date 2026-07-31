@@ -1,0 +1,39 @@
+meta {
+  name: Step 2 - Seating & Hours
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/onboarding/{{restaurant_id}}/seating
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "total_tables": 20,
+      "max_party_size": 8,
+      "avg_turn_time_minutes": 60,
+      "operating_hours": [
+          {
+              "day_of_week": 1,
+              "is_open": true,
+              "opens_at": "11:00",
+              "closes_at": "22:00"
+          },
+          {
+              "day_of_week": 7,
+              "is_open": false
+          }
+      ]
+  }
+}

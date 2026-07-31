@@ -1,0 +1,37 @@
+meta {
+  name: Update Modifier Group
+  type: http
+  seq: 12
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/modifier-groups/{{modifier_group_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Portion",
+      "min_select": 1,
+      "max_select": 1,
+      "options": [
+          {
+              "name": "Regular",
+              "price_delta": 0
+          },
+          {
+              "name": "Family",
+              "price_delta": 8
+          }
+      ]
+  }
+}

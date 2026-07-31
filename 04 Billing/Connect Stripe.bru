@@ -1,0 +1,21 @@
+meta {
+  name: Connect Stripe
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/billing/connect
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  Owner-only. Returns a Stripe Connect onboarding URL so the restaurant can
+  accept online prepayments on its own Stripe account (online-prepay flag).
+}

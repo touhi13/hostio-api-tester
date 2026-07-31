@@ -1,0 +1,37 @@
+meta {
+  name: Place Online Order (QR dine-in)
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/public/restaurants/{{restaurant_slug}}/orders
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "type": "dine_in",
+      "table_token": "{{table_qr_token}}",
+      "party_size": 2,
+      "guest_name": "QR Guest",
+      "phone": "+15551112233",
+      "items": [
+          {
+              "menu_item_id": "{{menu_item_id}}",
+              "quantity": 1
+          }
+      ]
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.tracking_token) {
+    bru.setEnvVar("tracking_token", res.body.data.tracking_token);
+  }
+}

@@ -1,0 +1,48 @@
+meta {
+  name: Save Area Layout
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/areas/{{area_id}}/layout
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "tables": [
+          {
+              "id": "{{table_id}}",
+              "pos_x": 220,
+              "pos_y": 140
+          },
+          {
+              "name": "T-99",
+              "seats": 4,
+              "pos_x": 400,
+              "pos_y": 200
+          }
+      ],
+      "elements": [
+          {
+              "type": "wall",
+              "pos_x": 0,
+              "pos_y": 0,
+              "width": 800,
+              "height": 20
+          }
+      ],
+      "deleted_table_ids": [],
+      "deleted_element_ids": []
+  }
+}

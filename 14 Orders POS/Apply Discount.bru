@@ -1,0 +1,26 @@
+meta {
+  name: Apply Discount
+  type: http
+  seq: 8
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "discount_type": "percent",
+      "discount_value": 10
+  }
+}

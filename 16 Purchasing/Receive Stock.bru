@@ -1,0 +1,30 @@
+meta {
+  name: Receive Stock
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/purchasing/purchase-orders/{{po_id}}/receive
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "items": [
+          {
+              "id": "{{po_item_id}}",
+              "quantity": 20
+          }
+      ]
+  }
+}

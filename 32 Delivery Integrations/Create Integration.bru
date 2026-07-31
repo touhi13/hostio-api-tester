@@ -1,0 +1,31 @@
+meta {
+  name: Create Integration
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/delivery-integrations
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "provider": "generic",
+      "callback_url": "https://aggregator.example/hostio-status",
+      "settings": {
+          "menu_map": {"EXT-SKU-1": 1, "EXT-SKU-2": 2}
+      }
+  }
+}
+
+docs {
+  Requires the delivery-integrations feature flag. The webhook_secret in the
+  response is shown exactly once.
+}
