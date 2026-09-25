@@ -1,0 +1,16 @@
+meta {
+  name: Admin Logout
+  type: http
+  seq: 25
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/auth/logout
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}

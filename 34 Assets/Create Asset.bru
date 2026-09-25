@@ -1,0 +1,46 @@
+meta {
+  name: Create Asset
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/assets
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Walk-in Freezer",
+      "category": "refrigeration",
+      "asset_tag": "RF-001",
+      "serial_number": "SN-998877",
+      "manufacturer": "True",
+      "model": "T-49F",
+      "vendor": "Restaurant Depot",
+      "area_id": "{{area_id}}",
+      "purchase_date": "2025-01-15",
+      "purchase_cost": 4500,
+      "salvage_value": 500,
+      "useful_life_months": 120,
+      "warranty_expires_at": "2028-01-15",
+      "status": "active",
+      "maintenance_interval_days": 90,
+      "notes": "Main kitchen freezer"
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("asset_id", res.body.data.id);
+  }
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Import Bank CSV
+  type: http
+  seq: 33
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/bank-statements/{{bank_statement_id}}/import
+  body: multipartForm
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  file: @file()
+}

@@ -1,0 +1,16 @@
+meta {
+  name: List Gift Cards
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/gift-cards
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}

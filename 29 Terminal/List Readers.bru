@@ -1,0 +1,16 @@
+meta {
+  name: List Readers
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/terminal/readers
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}

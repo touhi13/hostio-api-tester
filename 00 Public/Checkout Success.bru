@@ -1,0 +1,15 @@
+meta {
+  name: Checkout Success
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/v1/checkout/success?session_id=cs_test_placeholder
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}

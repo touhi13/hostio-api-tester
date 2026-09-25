@@ -1,0 +1,19 @@
+meta {
+  name: Restaurant Dashboard
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/dashboard
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

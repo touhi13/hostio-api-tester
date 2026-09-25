@@ -1,0 +1,16 @@
+meta {
+  name: Admin Enable 2FA
+  type: http
+  seq: 26
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/auth/2fa/enable
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}

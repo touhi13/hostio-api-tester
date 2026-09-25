@@ -1,0 +1,19 @@
+meta {
+  name: Show Bill
+  type: http
+  seq: 21
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/bills/{{bill_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

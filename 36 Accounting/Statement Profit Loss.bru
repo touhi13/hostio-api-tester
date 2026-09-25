@@ -1,0 +1,19 @@
+meta {
+  name: Statement Profit Loss
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/statements/profit-loss
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

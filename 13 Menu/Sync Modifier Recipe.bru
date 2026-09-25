@@ -1,0 +1,30 @@
+meta {
+  name: Sync Modifier Recipe
+  type: http
+  seq: 15
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/modifiers/{{modifier_id}}/recipe
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "ingredients": [
+          {
+              "inventory_item_id": "{{item_id}}",
+              "quantity": 0.05
+          }
+      ]
+  }
+}

@@ -1,0 +1,19 @@
+meta {
+  name: List Journal
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/journal
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

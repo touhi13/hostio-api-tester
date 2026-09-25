@@ -1,0 +1,23 @@
+meta {
+  name: Authenticate GET
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/broadcasting/auth
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Same channel auth as POST; some clients use GET with query params instead.
+}

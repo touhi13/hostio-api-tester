@@ -1,0 +1,16 @@
+meta {
+  name: Detach Restaurant
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{base_url}}/api/v1/organizations/{{organization_id}}/restaurants/{{restaurant_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}

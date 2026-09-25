@@ -1,0 +1,19 @@
+meta {
+  name: Delete Maintenance
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/assets/{{asset_id}}/maintenance/{{maintenance_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

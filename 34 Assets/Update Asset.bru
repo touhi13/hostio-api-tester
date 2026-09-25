@@ -1,0 +1,27 @@
+meta {
+  name: Update Asset
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/assets/{{asset_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Walk-in Freezer (North)",
+      "status": "active",
+      "notes": "Relocated to north wall"
+  }
+}

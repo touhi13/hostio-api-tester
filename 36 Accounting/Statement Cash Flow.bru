@@ -1,0 +1,19 @@
+meta {
+  name: Statement Cash Flow
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/statements/cash-flow
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,39 @@
+meta {
+  name: Create Bill
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/bills
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "supplier_id": "{{supplier_id}}",
+      "number": "SB-1001",
+      "bill_date": "2026-09-20",
+      "due_date": "2026-10-20",
+      "subtotal": 200,
+      "tax": 16,
+      "total": 216,
+      "account_id": "{{account_id}}",
+      "memo": "Weekly produce invoice"
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("bill_id", res.body.data.id);
+  }
+}

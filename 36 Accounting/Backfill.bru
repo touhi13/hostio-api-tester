@@ -1,0 +1,25 @@
+meta {
+  name: Backfill
+  type: http
+  seq: 42
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/backfill
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "from": "2026-01-01"
+  }
+}

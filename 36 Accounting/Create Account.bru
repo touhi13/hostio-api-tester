@@ -1,0 +1,35 @@
+meta {
+  name: Create Account
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/accounts
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "code": "1500",
+      "name": "Petty Cash",
+      "type": "asset",
+      "subtype": "cash",
+      "parent_id": null
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("account_id", res.body.data.id);
+  }
+}

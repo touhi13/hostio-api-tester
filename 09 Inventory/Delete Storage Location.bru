@@ -1,0 +1,19 @@
+meta {
+  name: Delete Storage Location
+  type: http
+  seq: 18
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/storage-locations/{{storage_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

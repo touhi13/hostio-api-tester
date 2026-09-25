@@ -1,0 +1,19 @@
+meta {
+  name: Exclude Bank Line
+  type: http
+  seq: 37
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/bank-statements/{{bank_statement_id}}/lines/{{bank_line_id}}/exclude
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

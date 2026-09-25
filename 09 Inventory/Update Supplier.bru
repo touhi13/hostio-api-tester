@@ -1,0 +1,28 @@
+meta {
+  name: Update Supplier
+  type: http
+  seq: 19
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/suppliers/{{supplier_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Peak Produce",
+      "contact_name": "Sam Green",
+      "email": "sam@peakproduce.com",
+      "phone": "+15555550789"
+  }
+}

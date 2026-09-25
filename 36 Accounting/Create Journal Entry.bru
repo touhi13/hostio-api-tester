@@ -1,0 +1,46 @@
+meta {
+  name: Create Journal Entry
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/journal
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "entry_date": "2026-09-25",
+      "memo": "Owner capital contribution",
+      "lines": [
+          {
+              "account_id": "{{account_id}}",
+              "debit": 1000,
+              "credit": 0,
+              "description": "Cash in"
+          },
+          {
+              "account_id": 1,
+              "debit": 0,
+              "credit": 1000,
+              "description": "Equity"
+          }
+      ]
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("journal_id", res.body.data.id);
+  }
+}

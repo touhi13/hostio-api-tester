@@ -1,0 +1,25 @@
+meta {
+  name: Change Plan
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/billing/change-plan
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "plan_id": "{{plan_id}}"
+  }
+}

@@ -1,0 +1,38 @@
+meta {
+  name: Create Expense
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/expenses
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "expense_category_id": "{{expense_category_id}}",
+      "payee": "Sysco",
+      "amount": 125.50,
+      "payment_method": "card",
+      "reference": "INV-1001",
+      "note": "Weekly produce",
+      "expense_date": "2026-09-25",
+      "is_recurring": false
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("expense_id", res.body.data.id);
+  }
+}

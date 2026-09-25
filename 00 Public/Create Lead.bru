@@ -1,0 +1,27 @@
+meta {
+  name: Create Lead
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/leads
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "name": "Jordan Lee",
+      "email": "jordan@example.com",
+      "phone": "+15555550123",
+      "restaurant_name": "Jordan's Bistro",
+      "venue_size": "21-50",
+      "message": "Interested in a demo",
+      "source": "demo"
+  }
+}

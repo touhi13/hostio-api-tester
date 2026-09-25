@@ -1,0 +1,22 @@
+meta {
+  name: Admin Confirm 2FA
+  type: http
+  seq: 27
+}
+
+post {
+  url: {{base_url}}/api/v1/admin/auth/2fa/confirm
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}
+
+body:json {
+  {
+      "code": "123456"
+  }
+}

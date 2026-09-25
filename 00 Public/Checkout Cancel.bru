@@ -1,0 +1,15 @@
+meta {
+  name: Checkout Cancel
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/api/v1/checkout/cancel
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}

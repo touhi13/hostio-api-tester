@@ -1,0 +1,27 @@
+meta {
+  name: Update Expense Category
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/expense-categories/{{expense_category_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Produce & Dairy",
+      "is_active": true,
+      "account_id": "{{account_id}}"
+  }
+}

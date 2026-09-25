@@ -1,0 +1,23 @@
+meta {
+  name: Show Statement
+  type: http
+  seq: 17
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/statements/{{statement_key}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  statement_key: trial-balance | profit-loss | balance-sheet | cash-flow | ratios
+}

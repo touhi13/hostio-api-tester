@@ -1,0 +1,16 @@
+meta {
+  name: Show Payment
+  type: http
+  seq: 31
+}
+
+get {
+  url: {{base_url}}/api/v1/admin/payments/{{payment_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}

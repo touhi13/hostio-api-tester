@@ -1,0 +1,25 @@
+meta {
+  name: Update Shift
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/{{scheduled_shift_id}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "starts_at": "2026-08-05 10:00:00",
+      "ends_at": "2026-08-05 18:00:00",
+      "role": "server",
+      "notes": "Cover lunch rush"
+  }
+}

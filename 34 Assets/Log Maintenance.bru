@@ -1,0 +1,37 @@
+meta {
+  name: Log Maintenance
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/assets/{{asset_id}}/maintenance
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "preventive",
+      "performed_at": "2026-09-20",
+      "cost": 150,
+      "vendor": "CoolTech HVAC",
+      "description": "Coil clean and seal check",
+      "next_due_at": "2026-12-20",
+      "set_status": "active"
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("maintenance_id", res.body.data.id);
+  }
+}

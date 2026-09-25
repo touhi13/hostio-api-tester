@@ -1,0 +1,16 @@
+meta {
+  name: Remove Member
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{base_url}}/api/v1/organizations/{{organization_id}}/members/{{staff_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}

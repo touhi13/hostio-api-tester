@@ -1,0 +1,16 @@
+meta {
+  name: Plan Features
+  type: http
+  seq: 29
+}
+
+get {
+  url: {{base_url}}/api/v1/admin/plan-features
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}

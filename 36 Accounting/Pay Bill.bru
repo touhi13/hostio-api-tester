@@ -1,0 +1,29 @@
+meta {
+  name: Pay Bill
+  type: http
+  seq: 22
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/bills/{{bill_id}}/payments
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "amount": 216,
+      "payment_date": "2026-09-25",
+      "payment_method": "card",
+      "reference": "CHK-4421",
+      "memo": "Paid in full"
+  }
+}

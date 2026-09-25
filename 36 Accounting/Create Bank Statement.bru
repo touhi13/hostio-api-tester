@@ -1,0 +1,34 @@
+meta {
+  name: Create Bank Statement
+  type: http
+  seq: 31
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/bank-statements
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "account_id": "{{account_id}}",
+      "statement_date": "2026-09-30",
+      "opening_balance": 10000,
+      "closing_balance": 11250.50
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("bank_statement_id", res.body.data.id);
+  }
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Public QR
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/public-qr
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

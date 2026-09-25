@@ -1,0 +1,16 @@
+meta {
+  name: List Schedule
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}

@@ -1,0 +1,16 @@
+meta {
+  name: List Payments
+  type: http
+  seq: 30
+}
+
+get {
+  url: {{base_url}}/api/v1/admin/payments?status=&restaurant_id=&search=
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+}

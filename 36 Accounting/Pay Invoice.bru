@@ -1,0 +1,29 @@
+meta {
+  name: Pay Invoice
+  type: http
+  seq: 28
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/invoices/{{invoice_id}}/payments
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "amount": 162,
+      "payment_date": "2026-09-25",
+      "payment_method": "card",
+      "reference": "PMT-9001",
+      "memo": "Paid in full"
+  }
+}

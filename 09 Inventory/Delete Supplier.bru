@@ -1,0 +1,19 @@
+meta {
+  name: Delete Supplier
+  type: http
+  seq: 20
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/suppliers/{{supplier_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

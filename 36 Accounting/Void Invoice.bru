@@ -1,0 +1,19 @@
+meta {
+  name: Void Invoice
+  type: http
+  seq: 29
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/invoices/{{invoice_id}}/void
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

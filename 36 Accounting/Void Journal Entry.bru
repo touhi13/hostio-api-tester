@@ -1,0 +1,19 @@
+meta {
+  name: Void Journal Entry
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/journal/{{journal_id}}/void
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

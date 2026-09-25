@@ -1,0 +1,25 @@
+meta {
+  name: Match Bank Line
+  type: http
+  seq: 35
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/bank-statements/{{bank_statement_id}}/lines/{{bank_line_id}}/match
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "journal_line_id": "{{journal_line_id}}"
+  }
+}

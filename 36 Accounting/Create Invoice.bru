@@ -1,0 +1,38 @@
+meta {
+  name: Create Invoice
+  type: http
+  seq: 26
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/accounting/invoices
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "customer_id": "{{customer_id}}",
+      "number": "CI-1001",
+      "invoice_date": "2026-09-20",
+      "due_date": "2026-10-04",
+      "subtotal": 150,
+      "tax": 12,
+      "total": 162,
+      "memo": "Catering deposit"
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("invoice_id", res.body.data.id);
+  }
+}
