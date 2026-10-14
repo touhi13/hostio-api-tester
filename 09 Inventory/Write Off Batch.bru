@@ -1,0 +1,29 @@
+meta {
+  name: Write Off Batch
+  type: http
+  seq: 23
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/batches/{{batch_id}}/write-off
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "note": "Mould on the crate"
+  }
+}
+
+docs {
+  Owner/manager. Bins what is left of one batch as waste at the batch's own cost (stock movement type `waste`, reference `inventory_batch`). `note` optional (max 500), defaults to "Batch written off". 422 on `batch` when the batch has no stock left.
+}
