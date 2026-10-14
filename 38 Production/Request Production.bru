@@ -1,0 +1,33 @@
+meta {
+  name: Request Production
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/production/orders
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "menu_item_id": "{{menu_item_id}}",
+      "quantity": 10,
+      "note": "Lunch rush"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("production_order_id", res.body.data.id);
+  }
+}

@@ -1,0 +1,29 @@
+meta {
+  name: Complete Production
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/production/orders/{{production_order_id}}/complete
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "produced_qty": 9
+  }
+}
+
+docs {
+  produced_qty is optional (defaults to the requested quantity). Consumes the recipe ingredients and adds to the dish's prepared stock.
+}

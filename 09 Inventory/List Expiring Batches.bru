@@ -1,0 +1,27 @@
+meta {
+  name: List Expiring Batches
+  type: http
+  seq: 22
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/batches/expiring
+  body: none
+  auth: bearer
+}
+
+params:query {
+  days: 3
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Batches expiring within `days` (0-90, default 3), soonest first. meta: { days, batch_count, value }.
+}

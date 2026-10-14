@@ -18,9 +18,8 @@ body:json {
   {
       "type": "dine_in",
       "table_token": "{{table_qr_token}}",
+      "order_grant": "{{order_grant}}",
       "party_size": 2,
-      "guest_name": "QR Guest",
-      "phone": "+15551112233",
       "items": [
           {
               "menu_item_id": "{{menu_item_id}}",
@@ -28,6 +27,11 @@ body:json {
           }
       ]
   }
+}
+
+docs {
+  Seat the table first, then run Claim Table Order Grant to fill {{order_grant}}.
+  guest_name and phone are optional for dine-in. A later order on the same seating adds a round to the same check.
 }
 
 script:post-response {

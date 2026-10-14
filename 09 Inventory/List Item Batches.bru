@@ -1,0 +1,23 @@
+meta {
+  name: List Item Batches
+  type: http
+  seq: 21
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/items/{{item_id}}/batches
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Open stock batches for the item, in the order they are used (first to expire first).
+}

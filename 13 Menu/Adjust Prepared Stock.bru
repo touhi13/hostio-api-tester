@@ -1,0 +1,31 @@
+meta {
+  name: Adjust Prepared Stock
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/items/{{menu_item_id}}/prepared-stock
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "waste",
+      "quantity": 2,
+      "note": "End of lunch leftovers"
+  }
+}
+
+docs {
+  Owner/manager/chef. type: waste (takes away) or adjust (sets the level outright). Quantity is in the dish's prepared_unit.
+}

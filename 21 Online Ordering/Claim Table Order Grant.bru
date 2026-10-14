@@ -1,0 +1,32 @@
+meta {
+  name: Claim Table Order Grant
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/v1/public/restaurants/{{restaurant_slug}}/order-grants/claim
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+      "table_token": "{{table_qr_token}}"
+  }
+}
+
+docs {
+  Guest browser opens a seated table QR. Returns an order_grant to send with dine-in orders.
+  422 when the table is not seated, or another phone has already ordered (host must Reset Order Access).
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.order_grant) {
+    bru.setEnvVar("order_grant", res.body.data.order_grant);
+  }
+}

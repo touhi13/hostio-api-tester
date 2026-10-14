@@ -1,0 +1,33 @@
+meta {
+  name: List Production Orders
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/production/orders
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: open
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  status: open | requested | cooking | completed | cancelled. Open orders first; pass page/per_page to paginate.
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.length) {
+    bru.setEnvVar("production_order_id", res.body.data[0].id);
+  }
+}

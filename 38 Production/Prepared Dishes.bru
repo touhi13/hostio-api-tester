@@ -1,0 +1,23 @@
+meta {
+  name: Prepared Dishes
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/production/dishes
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Par board: stock, held, available, ready_portions, par, in_production, avg_daily_sold, to_produce, next_expires_at per dish.
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Reset Order Access
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/tables/{{table_id}}/session/pin
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner/manager. Clears the phone bound to the table's seating and invalidates every cached order grant; guests must scan the table QR again.
+}
