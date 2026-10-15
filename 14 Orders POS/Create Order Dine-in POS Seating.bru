@@ -1,0 +1,41 @@
+meta {
+  name: Create Order (Dine-in, POS Seating)
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "dine_in",
+      "table_id": "{{table_id}}",
+      "party_size": 2,
+      "guest_name": "Walk-in"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("order_id", res.body.data.id);
+  }
+}
+
+docs {
+  Needs pos_direct_seating on (Update Restaurant) and an available table_id.
+  Seats the table as a walk-in and opens the check in one call; party_size is
+  required for an empty table. Completing or cancelling the last open check
+  frees the table again.
+}
