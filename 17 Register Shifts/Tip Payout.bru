@@ -1,0 +1,27 @@
+meta {
+  name: Tip Payout
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/{{shift_id}}/cash-movements
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "tip_payout",
+      "amount": 20,
+      "reason": "Cash tips to the floor team"
+  }
+}

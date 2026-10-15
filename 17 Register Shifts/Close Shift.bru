@@ -1,7 +1,7 @@
 meta {
   name: Close Shift
   type: http
-  seq: 5
+  seq: 8
 }
 
 post {
@@ -20,6 +20,17 @@ auth:bearer {
 
 body:json {
   {
-      "counted_cash": 220
+      "counted_cash": 220,
+      "denominations": [
+          { "value": 50, "count": 3 },
+          { "value": 20, "count": 3 },
+          { "value": 10, "count": 1 }
+      ],
+      "notes": "End of day count"
   }
+}
+
+docs {
+  Send `counted_cash`, `denominations`, or both (they must add up to the same amount).
+  Staff on a blind-count restaurant get `expected_cash` and `over_short` back as null.
 }

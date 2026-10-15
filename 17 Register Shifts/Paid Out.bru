@@ -1,0 +1,27 @@
+meta {
+  name: Paid Out
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/{{shift_id}}/cash-movements
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "paid_out",
+      "amount": 12.5,
+      "reason": "Milk run"
+  }
+}

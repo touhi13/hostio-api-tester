@@ -1,7 +1,7 @@
 meta {
   name: Z-Report
   type: http
-  seq: 6
+  seq: 9
 }
 
 get {
@@ -16,4 +16,8 @@ headers {
 
 auth:bearer {
   token: {{token}}
+}
+
+docs {
+  Open shift: live X-report (`report_type: "x"`). Closed shift: the frozen Z-report taken at close (`report_type: "z"`, `z_number` set).
 }

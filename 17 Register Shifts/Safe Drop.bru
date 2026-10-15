@@ -1,0 +1,27 @@
+meta {
+  name: Safe Drop
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/{{shift_id}}/cash-movements
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "safe_drop",
+      "amount": 100,
+      "reason": "Midday safe drop"
+  }
+}
