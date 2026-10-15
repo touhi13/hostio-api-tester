@@ -1,7 +1,7 @@
 meta {
   name: Paid Out
   type: http
-  seq: 6
+  seq: 7
 }
 
 post {
@@ -22,6 +22,18 @@ body:json {
   {
       "type": "paid_out",
       "amount": 12.5,
-      "reason": "Milk run"
+      "reason": "Milk run",
+      "expense_category_id": "{{expense_category_id}}"
   }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("cash_movement_id", res.body.data.id);
+  }
+}
+
+docs {
+  A paid out needs one of the restaurant's active expense categories (see Paid Out Categories).
+  It also books a cash expense in that category, which posts to the category's GL account.
 }

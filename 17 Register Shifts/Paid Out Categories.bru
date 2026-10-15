@@ -1,0 +1,23 @@
+meta {
+  name: Paid Out Categories
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/paid-out-categories
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Active expense categories for the paid out picker. Any member who can run the register.
+}

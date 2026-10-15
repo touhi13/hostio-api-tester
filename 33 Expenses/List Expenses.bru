@@ -10,10 +10,19 @@ get {
   auth: bearer
 }
 
+params:query {
+  ~source: register
+}
+
 headers {
   Accept: application/json
 }
 
 auth:bearer {
   token: {{token}}
+}
+
+docs {
+  Filters: from, to, category_id, payment_method, q, and source (`register` = paid outs from the drawer, `manual` = entered here).
+  Register expenses come back with `source: "register"`, `is_editable: false` and `register_shift { id, z_number }`.
 }

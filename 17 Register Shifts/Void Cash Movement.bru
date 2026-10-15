@@ -1,0 +1,24 @@
+meta {
+  name: Void Cash Movement
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/shifts/{{shift_id}}/cash-movements/{{cash_movement_id}}/void
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Reverse a drawer movement while the shift is open. The recorder or an owner/manager.
+  A reversed paid out also removes the expense it booked.
+}
