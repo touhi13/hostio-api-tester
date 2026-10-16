@@ -1,0 +1,31 @@
+meta {
+  name: Guest Lookup
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/guest-lookup?phone=%2B15552109002&limit=5
+  body: none
+  auth: bearer
+}
+
+params:query {
+  phone: %2B15552109002
+  limit: 5
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Phone lookup for the host stand and POS (any staff role, every plan).
+  Matches any formatting of the number; needs 4+ digits (fewer returns []).
+  Exact match first (`exact_match: true`), then VIPs, then frequent/recent guests.
+  Demo: +1 (555) 210-9002 is Sarah B.
+}

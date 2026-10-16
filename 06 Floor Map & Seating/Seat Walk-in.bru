@@ -22,6 +22,12 @@ body:json {
   {
       "source": "walk_in",
       "guest_name": "Walk-in Wally",
-      "party_size": 2
+      "party_size": 2,
+      "phone": "+15552109002"
   }
+}
+
+docs {
+  `phone` is optional. With it the session links the guest's profile (created on first visit),
+  counts the visit, and returns `session.customer`. Dine-in checks opened on the table inherit the guest.
 }
