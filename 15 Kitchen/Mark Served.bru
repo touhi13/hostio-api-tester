@@ -17,3 +17,9 @@ headers {
 auth:bearer {
   token: {{token}}
 }
+
+docs {
+  Ready -> served. When this was the last sent line at the pass, the order
+  moves to "served" (and to "ready" from Mark Ready when the last line is
+  cooked). See docs/frontend-guide-v18.md §53.2.
+}

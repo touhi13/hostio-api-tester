@@ -33,3 +33,12 @@ script:post-response {
     bru.setEnvVar("order_id", res.body.data[0].id);
   }
 }
+
+docs {
+  status: open | in_kitchen | ready | served | completed | cancelled.
+  ready = every sent line is cooked and one waits at the pass; served = every
+  sent line is with the guest (the check stays open until it is paid).
+
+  active=1 returns open, in_kitchen, ready and served orders.
+  See docs/frontend-guide-v18.md §53.
+}
