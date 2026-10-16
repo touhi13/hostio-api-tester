@@ -22,3 +22,8 @@ body:json {
       "gift_card_code": "{{gift_card_code}}"
   }
 }
+
+docs {
+  Needs an open register shift like any other payment. With no open shift
+  this returns 422 on errors.shift and the card balance is not touched.
+}

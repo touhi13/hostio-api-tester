@@ -23,5 +23,6 @@ body:json {
 
 docs {
   202 Accepted while the reader collects the card. The payment is recorded
-  when the payment_intent.succeeded webhook arrives.
+  when the payment_intent.succeeded webhook arrives. Needs an open register
+  shift (422 on errors.shift otherwise, before anything reaches Stripe).
 }
