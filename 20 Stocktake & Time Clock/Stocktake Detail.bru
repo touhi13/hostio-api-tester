@@ -1,0 +1,29 @@
+meta {
+  name: Stocktake Detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/stocktakes/{{stocktake_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner/manager. One past stocktake with its lines (guide v24 §59). Another restaurant's stocktake returns 404.
+
+  data.stocktake: id, notes, items_counted, counted_by { id, full_name }, counted_at.
+  data.variances[]: same rows as Apply Stocktake (stock_before, counted_qty, variance, waste_qty, waste_reason, unexplained_variance, notes) plus
+  - waste_cost: what the line's waste cost (null when no waste)
+  - unexplained_cost: signed cost of the remaining adjustment (negative = missing, positive = found)
+  data.totals: lines_short, lines_over, lines_matched, waste_cost, unexplained_loss, surplus_value.
+}
