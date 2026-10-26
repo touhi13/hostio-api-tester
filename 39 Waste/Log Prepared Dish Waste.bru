@@ -1,0 +1,40 @@
+meta {
+  name: Log Prepared Dish Waste
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/waste
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "source": "prepared_dish",
+      "menu_item_id": "{{menu_item_id}}",
+      "quantity": 2,
+      "reason": "overproduction",
+      "note": "Left over at close"
+  }
+}
+
+docs {
+  Owner/manager/chef. Bins portions from a cooked-ahead dish's ready stock, in its prepared_unit, costed at its recipe.
+  422 on quantity when it would take the prepared stock below zero.
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("waste_entry_id", res.body.data.id);
+  }
+}

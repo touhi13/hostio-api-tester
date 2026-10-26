@@ -1,0 +1,35 @@
+meta {
+  name: Waste Stock
+  type: http
+  seq: 24
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/items/{{item_id}}/stock
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "waste",
+      "quantity": 1.5,
+      "reason": "spoiled",
+      "note": "Soft and split"
+  }
+}
+
+docs {
+  Owner/manager. A waste movement drawn from the earliest-expiring batch and logged in the waste register.
+
+  reason (required for waste): expired | spoiled | damaged | cooking_error | overproduction | returned | other
+  422 on quantity when it would take the stock below zero.
+}

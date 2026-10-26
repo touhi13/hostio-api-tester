@@ -1,0 +1,28 @@
+meta {
+  name: Waste Report
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/reports/waste?preset=last_30_days
+  body: none
+  auth: bearer
+}
+
+params:query {
+  preset: last_30_days
+  ~compare: previous_period
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner/manager (analytics plan feature). KPIs waste_cost, waste_pct, expired_cost, before_expiry_cost, cooking_cost, unexplained_loss (stocktake shortfalls nobody put down as waste), entries; sections by_reason, by_stage, trend, top_items, by_staff, largest.
+}

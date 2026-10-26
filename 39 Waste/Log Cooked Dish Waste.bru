@@ -1,0 +1,40 @@
+meta {
+  name: Log Cooked Dish Waste
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/waste
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "source": "cooked_dish",
+      "menu_item_id": "{{menu_item_id}}",
+      "quantity": 1,
+      "reason": "cooking_error",
+      "note": "Burnt on the grill"
+  }
+}
+
+docs {
+  Owner/manager/chef. A dish cooked live that never reached the guest: every recipe ingredient leaves stock as waste (quantity = portions). Never blocks — stock may go negative.
+  422 on menu_item_id when the dish has no recipe.
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("waste_entry_id", res.body.data.id);
+  }
+}

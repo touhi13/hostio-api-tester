@@ -20,10 +20,14 @@ auth:bearer {
 
 body:json {
   {
+      "reason": "spoiled",
       "note": "Mould on the crate"
   }
 }
 
 docs {
-  Owner/manager. Bins what is left of one batch as waste at the batch's own cost (stock movement type `waste`, reference `inventory_batch`). `note` optional (max 500), defaults to "Batch written off". 422 on `batch` when the batch has no stock left.
+  Owner/manager. Bins what is left of one batch as waste at the batch's own cost (stock movement type `waste`, reference `inventory_batch`) and logs it in the waste register.
+
+  reason (required): expired | spoiled | damaged | other
+  note optional (max 500), defaults to "Batch written off". 422 on `batch` when the batch has no stock left.
 }

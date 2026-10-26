@@ -20,10 +20,16 @@ auth:bearer {
 
 body:json {
   {
-      "produced_qty": 9
+      "produced_qty": 9,
+      "wasted_qty": 1,
+      "waste_reason": "cooking_error"
   }
 }
 
 docs {
-  produced_qty is optional (defaults to the requested quantity). Consumes the recipe ingredients and adds to the dish's prepared stock.
+  produced_qty is optional (defaults to the requested quantity; 0 is allowed when everything was lost). Consumes the recipe ingredients and adds to the dish's prepared stock.
+
+  wasted_qty (optional) is what was lost while cooking: its ingredients are consumed too, it is binned from the dish's stock and logged in the waste register.
+  waste_reason: cooking_error (default) | damaged | other
+  422 on produced_qty when produced + wasted is 0.
 }

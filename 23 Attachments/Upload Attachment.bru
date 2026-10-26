@@ -28,7 +28,8 @@ body:multipart-form {
 docs {
   Uploads a file (jpg/jpeg/png/webp/gif/pdf, max 5MB) and attaches it to a model.
 
-  attachable_type: restaurant | inventory_item | menu_item | menu_category
+  attachable_type: restaurant | inventory_item | menu_item | menu_category | expense | asset | user | waste_entry
+  (waste_entry: owner, manager or chef — a photo of what was binned)
   collection: image | logo | gallery | document (defaults to image)
 
   Single-file collections (image, logo) replace the existing file on re-upload.

@@ -1,0 +1,40 @@
+meta {
+  name: List Waste
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/waste?page=1&per_page=25
+  body: none
+  auth: bearer
+}
+
+params:query {
+  page: 1
+  per_page: 25
+  ~from: 2026-10-01
+  ~to: 2026-10-31
+  ~reason: expired
+  ~source: inventory_item
+  ~inventory_item_id: {{item_id}}
+  ~menu_item_id: {{menu_item_id}}
+  ~user_id: {{user_id}}
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner/manager/chef. The waste register, newest first, always paginated.
+  data.meta = { count, total_cost } for the filtered list across every page.
+
+  from / to: YYYY-MM-DD on the restaurant's own calendar.
+  reason: expired | spoiled | damaged | cooking_error | overproduction | returned | other
+  source: inventory_item | prepared_dish | cooked_dish
+}

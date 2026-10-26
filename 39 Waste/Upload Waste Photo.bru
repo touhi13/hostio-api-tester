@@ -1,0 +1,30 @@
+meta {
+  name: Upload Waste Photo
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/attachments
+  body: multipartForm
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  file: @file()
+  attachable_type: waste_entry
+  attachable_id: {{waste_entry_id}}
+  collection: gallery
+}
+
+docs {
+  Owner/manager/chef. A photo of what was binned. Pick a file for the "file" field before sending.
+}
