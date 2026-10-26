@@ -6,7 +6,7 @@ meta {
 
 post {
   url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/production/orders/{{production_order_id}}/cancel
-  body: none
+  body: json
   auth: bearer
 }
 
@@ -16,4 +16,21 @@ headers {
 
 auth:bearer {
   token: {{token}}
+}
+
+body:json {
+  {
+      "wasted_qty": 5,
+      "waste_reason": "other"
+  }
+}
+
+docs {
+  Owner/manager/chef. Takes a requested or cooking production off the board. The body is optional.
+
+  wasted_qty (optional, in the dish's prepared unit): what a started batch already used before it was called off. Its recipe leaves raw stock as waste (never blocks — stock may go negative), it is logged in the waste register (source prepared_dish, production_order_id set), and the order keeps wasted_qty.
+  waste_reason: cooking_error (default) | damaged | other
+
+  422 on wasted_qty when the production is still requested ("The kitchen had not started this production, so nothing was used.").
+  422 on order when it is already completed or cancelled.
 }

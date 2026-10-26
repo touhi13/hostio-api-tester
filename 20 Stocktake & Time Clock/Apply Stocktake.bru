@@ -36,7 +36,7 @@ body:json {
 }
 
 docs {
-  Owner/manager. Each counted line is adjusted to counted_qty.
+  Owner/manager. Each counted line is adjusted to counted_qty. Count each item once: a repeated inventory_item_id returns 422 on counts.N.inventory_item_id ("This item is counted twice. Count each item once.").
 
   waste (optional, per line): part of the shortfall that was thrown away.
   - quantity > 0, no more than what the count found missing (422 on counts.N.waste.quantity otherwise)

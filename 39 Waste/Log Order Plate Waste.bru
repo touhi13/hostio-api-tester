@@ -1,0 +1,47 @@
+meta {
+  name: Log Order Plate Waste
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/waste
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "source": "order_item",
+      "order_item_id": "{{order_item_id}}",
+      "quantity": 1,
+      "reason": "returned",
+      "note": "Guest sent it back as undercooked"
+  }
+}
+
+docs {
+  Owner/manager/chef. A plate made for an order that was never eaten: sent back, dropped on the way to the table, or left when the order was cancelled. quantity = portions; menu_item_id is taken from the line.
+
+  reason: returned | cooking_error | damaged | other
+
+  - Line ready or served: its recipe already left stock when the kitchen marked it ready, so nothing moves again. The entry is costed at the line's share of what cooking it took, and that cost moves from COGS to Waste in the daily inventory usage entry.
+  - Line cancelled (order cancelled before the kitchen marked it ready): its recipe and modifier ingredients leave stock now as waste. Never blocks — stock may go negative.
+
+  422 on order_item_id when the line is still pending or preparing ("… is still with the kitchen…"), when a cancelled line's dish has no recipe, or when the line belongs to another restaurant.
+  422 on quantity when it is more than the line's quantity minus what is already logged against it.
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("waste_entry_id", res.body.data.id);
+  }
+}

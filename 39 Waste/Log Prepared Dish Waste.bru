@@ -30,6 +30,7 @@ body:json {
 
 docs {
   Owner/manager/chef. Bins portions from a cooked-ahead dish's ready stock, in its prepared_unit, costed at its recipe.
+  reason: expired | spoiled | damaged | overproduction | other. A plate already served from ready stock and sent back is logged against its order line (source order_item).
   422 on quantity when it would take the prepared stock below zero.
 }
 

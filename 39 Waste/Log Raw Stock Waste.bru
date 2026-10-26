@@ -30,6 +30,7 @@ body:json {
 
 docs {
   Owner/manager/chef. Bins raw stock (in the item's unit), drawn from its batches earliest expiry first, at batch cost.
+  reason: expired | spoiled | damaged | other (stock on the shelf was never cooked or sent back).
   422 on quantity when it would take the stock below zero.
 }
 

@@ -30,6 +30,7 @@ body:json {
 
 docs {
   Owner/manager/chef. A dish cooked live that never reached the guest: every recipe ingredient leaves stock as waste (quantity = portions). Never blocks — stock may go negative.
+  reason: cooking_error | damaged | other. A plate sent back by a guest was cooked for an order: log it with source order_item (Log Order Plate Waste), so its recipe is not taken twice.
   422 on menu_item_id when the dish has no recipe.
 }
 

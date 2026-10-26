@@ -1,0 +1,34 @@
+meta {
+  name: Deduct Stock
+  type: http
+  seq: 25
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/items/{{item_id}}/stock
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "type": "deduct",
+      "quantity": 2,
+      "note": "Sent to the Gulshan branch"
+  }
+}
+
+docs {
+  Owner/manager. Takes stock out by hand, drawn from the earliest-expiring batch. It counts as usage (COGS), so note is required for deduct: 422 "Say why this stock is being taken out by hand." without it.
+
+  Food thrown away is waste, not a deduct: use type waste with a reason (see Waste Stock).
+  422 on quantity when it would take the stock below zero.
+}
