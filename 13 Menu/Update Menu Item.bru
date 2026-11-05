@@ -25,3 +25,9 @@ body:json {
       "shelf_life_hours": 6
   }
 }
+
+docs {
+  Partial update. menu_category_id follows the same rule as Create: 0, "0"
+  and "" become null; another restaurant's category returns 422 on
+  menu_category_id (guide v27 §62).
+}

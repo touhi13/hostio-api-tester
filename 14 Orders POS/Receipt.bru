@@ -17,3 +17,9 @@ headers {
 auth:bearer {
   token: {{token}}
 }
+
+docs {
+  `document` is "bill" while the check is active and still owes money
+  (order.balance_due > 0), otherwise "receipt". Print a bill as
+  "BILL - NOT PAID" with the balance due (guide v28 §63).
+}

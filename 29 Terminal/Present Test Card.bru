@@ -1,0 +1,24 @@
+meta {
+  name: Present Test Card
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/terminal/readers/{{reader_id}}/test-card
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  Local / test mode only: 404 on production or with a live Stripe key.
+  Taps Stripe's test card on a simulated reader so the payment started by
+  Terminal Payment completes (payment_intent.succeeded then records it).
+  422 on terminal when the reader has no payment waiting.
+  The demo reader is on Tax Test Bistro (restaurant 4, reader 1; guide v28 §64.3).
+}

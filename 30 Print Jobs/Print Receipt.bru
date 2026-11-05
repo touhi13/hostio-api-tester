@@ -14,3 +14,9 @@ headers {
   Accept: application/json
   Authorization: Bearer {{token}}
 }
+
+docs {
+  Queues a `receipt` print job with the same payload as GET .../receipt,
+  including `document`: "bill" for an active check that still owes money,
+  otherwise "receipt". The print agent picks the layout from it (guide v28 §63).
+}

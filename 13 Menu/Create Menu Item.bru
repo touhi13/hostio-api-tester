@@ -35,3 +35,9 @@ script:post-response {
     bru.setEnvVar("menu_item_id", res.body.data.id);
   }
 }
+
+docs {
+  menu_category_id: null or omitted = uncategorized; 0, "0" and "" are
+  turned into null. A category of another restaurant (or a missing one)
+  returns 422 on menu_category_id (guide v27 §62).
+}
