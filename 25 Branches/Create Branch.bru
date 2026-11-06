@@ -1,0 +1,33 @@
+meta {
+  name: Create Branch
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/branches
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "name": "Dhanmondi Branch",
+    "address": "Road 27, Dhanmondi",
+    "city": "Dhaka",
+    "phone": "01711000000",
+    "copy_menu": true
+  }
+}
+
+script:post-response {
+  if (res.body.data && res.body.data.id) {
+    bru.setEnvVar("branch_id", res.body.data.id);
+  }
+}
+

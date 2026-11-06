@@ -1,0 +1,24 @@
+meta {
+  name: Menu Sync
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/branches/menu-sync
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "source_restaurant_id": {{restaurant_id}},
+    "target_restaurant_ids": [{{branch_id}}]
+  }
+}
+
