@@ -31,6 +31,11 @@ body:json {
       "blind_cash_count": true,
       "pos_direct_seating": false,
       "cash_variance_tolerance": 5,
+      "time_clock_enforcement": "register",
+      "clock_in_exempt_roles": ["owner"],
+      "clock_in_early_minutes": 15,
+      "unscheduled_clock_in": "flag",
+      "auto_clock_out_hours": 16,
       "operating_hours": [
           {
               "day_of_week": 1,

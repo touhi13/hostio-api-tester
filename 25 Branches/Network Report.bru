@@ -1,0 +1,24 @@
+meta {
+  name: Network Report
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/branches/report?preset=this_month
+  body: none
+  auth: none
+}
+
+params:query {
+  preset: this_month
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+docs {
+  Network P&L: every location's profitability for the period with totals (guide v32 §68.5). Owner or manager of the flagship.
+}

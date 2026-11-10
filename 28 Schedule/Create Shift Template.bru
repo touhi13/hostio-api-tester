@@ -1,0 +1,41 @@
+meta {
+  name: Create Shift Template
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/templates
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Close",
+      "start_time": "16:00",
+      "end_time": "00:30",
+      "break_minutes": 30,
+      "role": "server",
+      "color": "#16A34A"
+  }
+}
+
+docs {
+  Local wall-clock times. An end at or before the start runs past midnight.
+  Name is unique per restaurant (422).
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("shift_template_id", res.body.data.id);
+  }
+}

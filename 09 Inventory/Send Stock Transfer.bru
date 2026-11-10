@@ -1,0 +1,34 @@
+meta {
+  name: Send Stock Transfer
+  type: http
+  seq: 27
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/transfers
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "to_restaurant_id": {{branch_id}},
+    "note": "Weekly top-up from the main kitchen",
+    "items": [
+      { "inventory_item_id": {{item_id}}, "quantity": 1 }
+    ]
+  }
+}
+
+docs {
+  Sends stock at cost to another location of the branch network; the receiver gets a batch at the same cost (guide v32 §68.4).
+  422 `to_restaurant_id` outside the network, 422 `items` when a line exceeds the stock.
+}

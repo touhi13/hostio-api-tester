@@ -1,0 +1,33 @@
+meta {
+  name: Create Shift From Template
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "user_id": 2,
+      "date": "2026-11-20",
+      "shift_template_id": {{shift_template_id}},
+      "publish": true
+  }
+}
+
+docs {
+  The calendar's "pick a day" flow: a local date plus a template (or
+  start_time/end_time). publish=true publishes and notifies at once.
+}

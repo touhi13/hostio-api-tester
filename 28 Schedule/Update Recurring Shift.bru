@@ -1,0 +1,32 @@
+meta {
+  name: Update Recurring Shift
+  type: http
+  seq: 14
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/recurring/{{recurring_shift_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "days_of_week": [1, 3, 5],
+      "ends_on": "2026-12-31"
+  }
+}
+
+docs {
+  user_id cannot change (422). Future shifts not edited by hand are rebuilt;
+  overrides, removed dates and started shifts stay. Response adds generated,
+  removed and skipped_dates.
+}

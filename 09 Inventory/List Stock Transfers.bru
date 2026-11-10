@@ -1,0 +1,27 @@
+meta {
+  name: List Stock Transfers
+  type: http
+  seq: 26
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/inventory/transfers?page=1
+  body: none
+  auth: bearer
+}
+
+params:query {
+  page: 1
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Transfers this location sent or received (`direction`), plus `locations` it can send to (guide v32 §68.4). Owner/manager.
+}

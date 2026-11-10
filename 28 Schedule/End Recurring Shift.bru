@@ -1,0 +1,24 @@
+meta {
+  name: End Recurring Shift
+  type: http
+  seq: 15
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/recurring/{{recurring_shift_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Removes the pattern's future, untouched shifts (data.removed). Past shifts
+  and dates edited by hand stay as plain shifts.
+}

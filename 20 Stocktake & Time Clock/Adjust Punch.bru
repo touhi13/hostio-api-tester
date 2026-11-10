@@ -1,0 +1,31 @@
+meta {
+  name: Adjust Punch
+  type: http
+  seq: 9
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/time-clock/entries/{{time_entry_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "clocked_out_at": "2026-11-09 17:30:00",
+      "reason": "Forgot to clock out after closing"
+  }
+}
+
+docs {
+  Owner/manager; reason required. Before/after go to the audit log
+  (time_clock.entry_adjusted). No overlap with the member's other punches.
+}

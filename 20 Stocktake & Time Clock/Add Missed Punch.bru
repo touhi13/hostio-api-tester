@@ -1,0 +1,39 @@
+meta {
+  name: Add Missed Punch
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/time-clock/entries
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "user_id": 2,
+      "clocked_in_at": "2026-11-09 09:00:00",
+      "clocked_out_at": "2026-11-09 17:00:00",
+      "reason": "Tablet was offline"
+  }
+}
+
+docs {
+  Owner/manager. Links the member's shift, audits time_clock.entry_created
+  and re-posts labour for a past day.
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("time_entry_id", res.body.data.id);
+  }
+}

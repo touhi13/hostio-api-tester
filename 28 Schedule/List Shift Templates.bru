@@ -1,0 +1,23 @@
+meta {
+  name: List Shift Templates
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/templates
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner/manager. Reusable shifts with recurring_shifts_count (guide v38 §74.1).
+}

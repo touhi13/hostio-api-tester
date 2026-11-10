@@ -1,0 +1,27 @@
+meta {
+  name: Catalog Sync
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/branches/catalog-sync
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "source_restaurant_id": {{restaurant_id}},
+    "target_restaurant_ids": [{{branch_id}}]
+  }
+}
+
+docs {
+  Copies inventory categories and items by name, without stock (guide v32 §68.3). Run before Menu Sync so recipes copy. Owner of the flagship.
+}

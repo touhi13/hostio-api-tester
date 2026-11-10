@@ -1,0 +1,24 @@
+meta {
+  name: List Recurring Shifts
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/recurring
+  body: none
+  auth: bearer
+}
+
+params:query {
+  user_id: 
+  include_ended: 0
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}

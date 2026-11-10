@@ -1,0 +1,32 @@
+meta {
+  name: Update Shift Template
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/templates/{{shift_template_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "start_time": "16:30",
+      "end_time": "01:00",
+      "apply_to_future": true
+  }
+}
+
+docs {
+  apply_to_future: recurring shifts using this template take the new times and
+  their future, non-edited shifts are rebuilt. Response adds recurring_shifts_updated.
+}

@@ -1,0 +1,43 @@
+meta {
+  name: Assign Recurring Shift
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/recurring
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "user_id": 2,
+      "shift_template_id": {{shift_template_id}},
+      "days_of_week": [1, 2, 3, 4, 6, 7],
+      "interval_weeks": 1,
+      "starts_on": null,
+      "ends_on": null
+  }
+}
+
+docs {
+  days_of_week are ISO weekdays (1 = Monday ... 7 = Sunday). Without a template,
+  send start_time and end_time ("HH:MM"). Generates published shifts for the
+  next 6 weeks; the response carries generated and skipped_dates (dates that
+  clash with another shift of the member).
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("recurring_shift_id", res.body.data.id);
+  }
+}

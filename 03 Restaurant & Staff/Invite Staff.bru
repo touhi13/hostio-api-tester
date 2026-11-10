@@ -21,7 +21,10 @@ auth:bearer {
 body:json {
   {
       "email": "nina@example.com",
-      "role": "host"
+      "role": "host",
+      "schedule": [
+          { "shift_template_id": 1, "days_of_week": [1, 2, 3, 4, 5] }
+      ]
   }
 }
 
@@ -34,6 +37,9 @@ docs {
   it in storage/logs/laravel.log and put it into the invitation_token env var.
 
   Re-inviting the same email rotates the token and replaces the pending invite.
+
+  schedule (optional, guide v38 §74.5): recurring shifts assigned when the
+  invitation is accepted. Templates must be active templates of the restaurant.
 }
 
 script:post-response {

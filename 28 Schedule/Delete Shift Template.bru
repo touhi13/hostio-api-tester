@@ -1,0 +1,23 @@
+meta {
+  name: Delete Shift Template
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/schedule/templates/{{shift_template_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Recurring and calendar shifts keep their own times; they lose the link.
+}

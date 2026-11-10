@@ -17,3 +17,11 @@ headers {
 auth:bearer {
   token: {{token}}
 }
+
+docs {
+  Links the member's current shift (or the next one within the early window)
+  and records late_minutes (guide v38 §74.4). 422 when too early for today's
+  shift, or with no shift when unscheduled_clock_in is "block" (owners and
+  managers are flagged instead). Other writes answer 403 CLOCK_IN_REQUIRED
+  until this succeeds, per time_clock_enforcement.
+}
