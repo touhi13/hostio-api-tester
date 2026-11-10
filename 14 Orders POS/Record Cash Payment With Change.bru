@@ -1,0 +1,39 @@
+meta {
+  name: Record Cash Payment With Change
+  type: http
+  seq: 18
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}/payments
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "method": "cash",
+      "amount": 450,
+      "tendered_amount": 500
+  }
+}
+
+docs {
+  A ৳450 bill paid with a ৳500 note. `amount` is what goes on the check (never
+  more than the balance); `tendered_amount` is the cash handed over (cash only,
+  must cover amount + tip_amount). The response's payment has
+  `change_amount: 50`, and the shift's X/Z report counts it under
+  `cash.cash_received` / `cash.change_given`.
+
+  Needs an open register shift (Register Shifts → Open Shift). A card payment
+  with `tendered_amount`, or cash received below amount + tip, returns 422 on
+  errors.tendered_amount.
+}
