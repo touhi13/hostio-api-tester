@@ -26,7 +26,8 @@ body:json {
       "price": 21.5,
       "station": "kitchen",
       "prepared_unit": "plate",
-      "serving_size": 1
+      "serving_size": 1,
+      "allows_live_cook": true
   }
 }
 
@@ -42,4 +43,6 @@ docs {
   returns 422 on menu_category_id (guide v27 §62).
   station: a key from GET menu/stations; omitted = the first station.
   A key the restaurant does not have returns 422 on station (guide v43 §79).
+  allows_live_cook: optional, default true. false = the dish can only be
+  sold up to its free ready plates (guide v47 §83).
 }

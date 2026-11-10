@@ -22,7 +22,8 @@ body:json {
   {
       "price": 23,
       "prepared_par_qty": 10,
-      "shelf_life_hours": 6
+      "shelf_life_hours": 6,
+      "allows_live_cook": false
   }
 }
 
@@ -30,4 +31,5 @@ docs {
   Partial update. menu_category_id follows the same rule as Create: 0, "0"
   and "" become null; another restaurant's category returns 422 on
   menu_category_id (guide v27 §62).
+  allows_live_cook left out stays as it is (guide v47 §83).
 }
