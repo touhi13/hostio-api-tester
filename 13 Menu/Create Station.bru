@@ -1,0 +1,39 @@
+meta {
+  name: Create Station
+  type: http
+  seq: 19
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/stations
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Tandoor",
+      "sales_category": "food"
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("station_id", res.body.data.id);
+  }
+}
+
+docs {
+  Owner or manager. key is made from the name (tandoor, tandoor-2 when
+  taken) and never changes. sales_category: food (4000) or beverage (4010),
+  default food. sort_order optional, default after the last station.
+  A name already used (any case) returns 422 on name.
+}

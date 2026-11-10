@@ -1,0 +1,33 @@
+meta {
+  name: List Dayparts
+  type: http
+  seq: 22
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/dayparts
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body.data && res.body.data.length) {
+    bru.setEnvVar("daypart_id", res.body.data[0].id);
+  }
+}
+
+docs {
+  Any member. Meal periods (Breakfast, Lunch, Dinner…) in display order,
+  each with starts_at / ends_at (HH:MM, local time), days (ISO weekdays
+  1 = Mon … 7 = Sun), categories_count and is_current (running now in the
+  restaurant's timezone). ends_at before starts_at runs past midnight.
+  The POS opens on the first is_current one (guide v45 §81).
+}

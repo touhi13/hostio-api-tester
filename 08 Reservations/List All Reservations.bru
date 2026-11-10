@@ -1,0 +1,32 @@
+meta {
+  name: List All Reservations
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/reservations?scope=all&page=1&per_page=25
+  body: none
+  auth: bearer
+}
+
+params:query {
+  scope: all
+  page: 1
+  per_page: 25
+  ~status: no_show
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Every reservation on every day, any status, newest first (`scope=all`). Add `status` to keep one status.
+  `scope=upcoming` (the default) is the upcoming booked list. With `date` (Y-m-d, the restaurant's calendar day) the scope is ignored.
+  Without `page` or `per_page` the list is capped at 100 rows.
+}

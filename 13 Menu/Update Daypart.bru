@@ -1,0 +1,33 @@
+meta {
+  name: Update Daypart
+  type: http
+  seq: 24
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/dayparts/{{daypart_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Late Night",
+      "starts_at": "21:30",
+      "days": [4, 5]
+  }
+}
+
+docs {
+  Owner or manager. Every field optional. A start equal to the end (after
+  merging with the saved times) is 422 errors.ends_at. Branch menu sync
+  renames a branch copy but never changes its hours or days.
+}

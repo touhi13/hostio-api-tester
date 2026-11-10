@@ -1,0 +1,25 @@
+meta {
+  name: List Stations
+  type: http
+  seq: 18
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/stations
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Any member. Display order, each with menu_items_count. Every restaurant
+  starts with kitchen (food) and bar (beverage); a branch starts with the
+  flagship's list (guide v43 §79).
+}

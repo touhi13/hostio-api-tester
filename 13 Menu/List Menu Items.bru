@@ -15,6 +15,7 @@ params:query {
   station: 
   search: 
   available_only: 
+  daypart_id: 
 }
 
 headers {
@@ -29,4 +30,9 @@ script:post-response {
   if (res.status === 200 && res.body.data && res.body.data.length) {
     bru.setEnvVar("menu_item_id", res.body.data[0].id);
   }
+}
+
+docs {
+  Any member. daypart_id: dishes served in that day-part plus all-day
+  categories and dishes with no category (POS day-part tabs, guide v45 §81).
 }

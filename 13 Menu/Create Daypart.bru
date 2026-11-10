@@ -1,0 +1,42 @@
+meta {
+  name: Create Daypart
+  type: http
+  seq: 23
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/dayparts
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Late Night",
+      "starts_at": "22:00",
+      "ends_at": "02:00",
+      "days": [4, 5, 6]
+  }
+}
+
+script:post-response {
+  if (res.status === 201 && res.body.data && res.body.data.id) {
+    bru.setEnvVar("daypart_id", res.body.data.id);
+  }
+}
+
+docs {
+  Owner or manager. name (max 50, unique in any case), starts_at and
+  ends_at (HH:MM) required; they must differ. days optional, default every
+  day. sort_order optional, default after the last day-part. An overnight
+  window counts after midnight toward the day it started (Thursday 22:00
+  until Friday 02:00 is Thursday).
+}

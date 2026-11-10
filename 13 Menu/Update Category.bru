@@ -20,6 +20,12 @@ auth:bearer {
 
 body:json {
   {
-      "name": "Chef Specials"
+      "name": "Chef Specials",
+      "daypart_ids": [{{daypart_id}}]
   }
+}
+
+docs {
+  Owner or manager. daypart_ids: day-parts the category is served in;
+  [] = all day; left out = unchanged. Ids from another restaurant are 422.
 }

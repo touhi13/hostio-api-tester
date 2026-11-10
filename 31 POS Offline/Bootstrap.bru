@@ -17,5 +17,7 @@ headers {
 
 docs {
   One payload for the POS to cache offline: menu, tables, open orders,
-  current register shift and pricing settings.
+  current register shift and pricing settings. dayparts (with is_current)
+  and restaurant.timezone let the app pick the running day-part offline;
+  each menu category carries daypart_ids (empty = all day).
 }

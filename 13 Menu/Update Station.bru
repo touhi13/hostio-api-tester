@@ -1,0 +1,32 @@
+meta {
+  name: Update Station
+  type: http
+  seq: 20
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/stations/{{station_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Tandoor Oven",
+      "sales_category": "food",
+      "sort_order": 2
+  }
+}
+
+docs {
+  Owner or manager. Every field optional. The key stays the same, so menu
+  items, past order lines and print jobs keep pointing at the station.
+}

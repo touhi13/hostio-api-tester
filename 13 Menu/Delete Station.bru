@@ -1,0 +1,24 @@
+meta {
+  name: Delete Station
+  type: http
+  seq: 21
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/stations/{{station_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner or manager. 422 errors.station while menu items still use it, or
+  when it is the restaurant's last station.
+}

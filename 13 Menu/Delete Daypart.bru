@@ -1,0 +1,24 @@
+meta {
+  name: Delete Daypart
+  type: http
+  seq: 25
+}
+
+delete {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/menu/dayparts/{{daypart_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner or manager. Categories lose the link; a category left with no
+  day-part is served all day again.
+}
