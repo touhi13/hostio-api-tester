@@ -17,3 +17,18 @@ headers {
 auth:bearer {
   token: {{token}}
 }
+
+docs {
+  Placed stations and storage locations sit on each area, like tables
+  (guide v57 §93). areas[].stations and areas[].storage_locations carry
+  area_id, pos_x, pos_y, width, height and status. Station status: state
+  (idle, cooking, ready, late), pending, preparing, ready, orders,
+  oldest_minutes. late = the oldest line still cooking was sent over 20
+  minutes ago. Storage status: state (out, low, stocked, empty),
+  in_stock, low_stock, out_of_stock. Counts are items, from stock_qty.
+  empty means no item is kept there.
+  Top-level stations and storage_locations list every one, placed or not
+  (area_id null when not on the floor), with the same status.
+  Elements are wall, door, host_area and entrance only. They have no
+  station_id, storage_location_id, station_status or storage_status.
+}

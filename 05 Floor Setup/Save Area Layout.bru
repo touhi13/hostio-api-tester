@@ -40,9 +40,53 @@ body:json {
               "pos_y": 0,
               "width": 800,
               "height": 20
+          },
+          {
+              "type": "host_area",
+              "pos_x": 40,
+              "pos_y": 40,
+              "width": 90,
+              "height": 132
+          }
+      ],
+      "stations": [
+          {
+              "id": "{{station_id}}",
+              "pos_x": 770,
+              "pos_y": 50
+          },
+          {
+              "name": "Grill",
+              "sales_category": "food",
+              "pos_x": 900,
+              "pos_y": 480,
+              "width": 140,
+              "height": 160
+          }
+      ],
+      "storage_locations": [
+          {
+              "id": "{{storage_id}}",
+              "pos_x": 20,
+              "pos_y": 40
           }
       ],
       "deleted_table_ids": [],
-      "deleted_element_ids": []
+      "deleted_element_ids": [],
+      "unplaced_station_ids": [],
+      "unplaced_storage_location_ids": [],
+      "deleted_station_ids": [],
+      "deleted_storage_location_ids": []
   }
+}
+
+docs {
+  Stations and storage locations are placed like tables (guide v57 §93).
+  A station or location without id is created in this area. One with id
+  is moved here. unplaced_*_ids takes it off the floor but keeps it.
+  deleted_station_ids fails the whole save when dishes still use it
+  (errors.station) or it is the last station. Deleting a storage
+  location leaves its items in stock with no location.
+  Element types are wall, door, host_area, entrance only.
+  The layout response has no live status; that is only on GET /floor-map.
 }

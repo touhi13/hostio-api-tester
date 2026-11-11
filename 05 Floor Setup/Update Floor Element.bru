@@ -20,6 +20,14 @@ auth:bearer {
 
 body:json {
   {
-      "label": "Main Kitchen"
+      "label": "Front door"
   }
+}
+
+docs {
+  type: wall, door, host_area or entrance. Kitchens, bars and storage are
+  not elements any more: place stations and storage locations through
+  Save Area Layout (stations / storage_locations), like tables (guide v57
+  §93). kitchen_area, bar, storage, station_id and storage_location_id
+  return 422.
 }
