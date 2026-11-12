@@ -1,0 +1,19 @@
+meta {
+  name: Order bKash Callback
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{base_url}}/api/v1/orders/bkash/callback?paymentID=PAY1&status=success&signature=sig
+  body: none
+  auth: none
+}
+
+docs {
+  Public browser redirect after a guest pays a delivery, takeaway or table QR order with the restaurant's bKash.
+  No auth. status is success, failure, or cancel.
+  A success redirect is not proof of payment: the API calls Execute with that restaurant's credentials and only then records one mobile payment.
+  The response redirects to the frontend /track/{tracking_token}?paid=1 or /track/{tracking_token}.
+  This is not the subscription callback at /billing/bkash/callback.
+}

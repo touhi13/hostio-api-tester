@@ -1,0 +1,18 @@
+meta {
+  name: bKash Callback
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{base_url}}/api/v1/billing/bkash/callback?paymentID=TR001&status=success&signature=sig
+  body: none
+  auth: none
+}
+
+docs {
+  Public browser redirect from bKash. No auth.
+  status is success, failure, or cancel.
+  A success redirect is not proof of payment: the API calls Execute (then Query if Execute times out) and only then extends the month.
+  The response is a redirect to the frontend /billing/success?gateway=bkash or /billing/cancelled?gateway=bkash.
+}

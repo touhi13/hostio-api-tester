@@ -1,0 +1,38 @@
+meta {
+  name: Save bKash Merchant
+  type: http
+  seq: 21
+}
+
+put {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/integrations/bkash
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "enabled": true,
+      "username": "sandboxTokenizedUser02",
+      "password": "sandboxTokenizedUser02@12345",
+      "app_key": "your-app-key",
+      "app_secret": "your-app-secret"
+  }
+}
+
+docs {
+  Owner only. Saves this restaurant's own bKash merchant credentials for guest delivery, takeaway and table QR orders.
+  Currency must be BDT or the API returns 422 enabled.
+  Omit a secret, or send it blank, to keep the saved value. enabled false turns guest payment off and keeps the secrets.
+  clear true deletes the four secrets and turns payment off.
+  The response is { restaurant, my_role } with bkash_enabled and bkash_configured. Secrets are never returned.
+  The bKash host (sandbox or live) stays in the API BKASH_BASE_URL. This is not the Hostio subscription wallet.
+}

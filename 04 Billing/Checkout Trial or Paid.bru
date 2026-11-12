@@ -23,3 +23,11 @@ body:json {
       "plan_id": "{{plan_id}}"
   }
 }
+
+docs {
+  A free trial returns 201 and a subscription.
+  A paid plan returns checkout_url.
+  Currency USD (and anything other than BDT) opens Stripe Checkout.
+  Currency BDT opens bKash. The plan needs price_monthly_bdt or the API returns 422 plan_id.
+  bKash does not auto-renew: each month the owner pays again. Change-plan is 422 for a bKash subscription; pay the new plan through this checkout instead.
+}

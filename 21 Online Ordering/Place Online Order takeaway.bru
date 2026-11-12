@@ -34,3 +34,10 @@ script:post-response {
     bru.setEnvVar("tracking_token", res.body.data.tracking_token);
   }
 }
+
+docs {
+  201 includes payment_url when the restaurant can take an online payment.
+  bKash (currency BDT, credentials saved, bkash_enabled) returns the restaurant's own bKash page. Otherwise Stripe Connect, when online prepay is on. Otherwise null, and the guest pays at the restaurant.
+  Delivery uses the same URL with type delivery and delivery_address. Table QR uses type dine_in.
+  Follow payment_url in the browser. bKash sends the guest back through Order bKash Callback.
+}
