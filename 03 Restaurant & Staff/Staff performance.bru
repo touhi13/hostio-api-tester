@@ -1,0 +1,25 @@
+meta {
+  name: Staff performance
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/staff/{{staff_id}}/performance?from=2026-11-09&to=2026-11-15
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner or manager. Omit from and to for the current restaurant week.
+  A window longer than 92 days is 422 errors.to.
+  work.focus follows the member role: service, door, kitchen, or floor.
+}
