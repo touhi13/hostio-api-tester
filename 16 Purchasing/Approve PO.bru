@@ -1,0 +1,24 @@
+meta {
+  name: Approve PO
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/purchasing/purchase-orders/{{po_id}}/approve
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner only (403 for a manager). Pending approval -> ordered; emails the supplier.
+  A manager's PO at or above purchase_approval_threshold waits here after Submit.
+}

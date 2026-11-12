@@ -1,0 +1,27 @@
+meta {
+  name: Apply Coupon
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/orders/{{order_id}}/apply-coupon
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "code": "JULY10"
+  }
+}
+
+docs {
+  Anyone who can take a payment. Active check, no discount yet.
+  Sets discount_source to coupon and coupon_code. A flat code above the subtotal is 422 errors.code.
+}

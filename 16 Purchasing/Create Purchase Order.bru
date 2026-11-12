@@ -41,3 +41,10 @@ script:post-response {
     }
   }
 }
+
+docs {
+  A line is ordered by the unit (`quantity`, optional `unit_cost`) or by the case
+  (`cases`, optional `case_cost`) when the item has `units_per_case`, e.g.
+  `{ "inventory_item_id": 21, "cases": 2 }` orders 2 x 24 = 48 bottles at the item's case price.
+  Quantities are stored in stock units; the line keeps `pack_size`.
+}

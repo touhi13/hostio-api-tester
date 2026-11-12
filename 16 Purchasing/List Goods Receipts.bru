@@ -1,0 +1,24 @@
+meta {
+  name: List Goods Receipts
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/purchasing/receipts?discrepancy=1&per_page=25
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  GRNs, newest first, paginated (data.items + data.paginate).
+  Filters: purchase_order_id, discrepancy=1 (only deliveries that did not match), from, to (Y-m-d).
+}

@@ -1,0 +1,29 @@
+meta {
+  name: Reject PO
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/purchasing/purchase-orders/{{po_id}}/reject
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "reason": "Order 8 kg and check last week's price first"
+  }
+}
+
+docs {
+  Owner only. Pending approval -> draft with rejection_reason; the submitter is notified.
+}

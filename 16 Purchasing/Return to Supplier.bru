@@ -1,0 +1,39 @@
+meta {
+  name: Return to Supplier
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/purchasing/receipts/{{grn_id}}/returns
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "reason": "spoiled",
+      "notes": "Bottom of one sack rotten",
+      "items": [
+          {
+              "id": "{{grn_item_id}}",
+              "quantity": 5
+          }
+      ]
+  }
+}
+
+docs {
+  Owner or manager. Sends stock from one delivery (GRN) back to the supplier as a debit note (RTN-0001).
+  items.*.id is a GRN line id; quantity in the item's stock unit, at most accepted − already returned and
+  no more than is left of that delivery's batch. reason: damaged | spoiled | wrong_item | poor_quality | short_dated.
+  The amount comes off the delivery's bill (amount_credited) and posts Dr AP / Cr Inventory.
+}

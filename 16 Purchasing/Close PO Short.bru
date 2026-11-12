@@ -1,0 +1,29 @@
+meta {
+  name: Close PO Short
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/purchasing/purchase-orders/{{po_id}}/close
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "reason": "Supplier will not resend the rest"
+  }
+}
+
+docs {
+  Partially received -> closed. What arrived stays booked and billed; the rest is dropped.
+}

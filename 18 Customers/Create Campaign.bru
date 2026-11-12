@@ -20,7 +20,9 @@ body:json {
       "name": "Loyalty blast",
       "subject": "A treat for our regulars",
       "body": "Come back this week for a free dessert on us!",
-      "segment": { "min_visits": 3, "last_visit_within_days": 90 }
+      "sms_body": "Golden Spoon: 10% off with code JULY10.",
+      "segment": { "min_visits": 3, "last_visit_within_days": 90 },
+      "coupon": { "code": "JULY10", "type": "percent", "value": 10 }
   }
 }
 
