@@ -23,3 +23,9 @@ script:post-response {
     bru.setEnvVar("restaurant_id", res.body.data.restaurant_id);
   }
 }
+
+docs {
+  selected_plan: the plan picked at sign-up (Register "plan"), as a plan payload,
+  or null when none was picked or it has been retired. The web wizard shows it as
+  "Your plan" at step 3 with a "See all plans" option.
+}

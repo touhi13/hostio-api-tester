@@ -21,17 +21,19 @@ auth:bearer {
 body:json {
   {
       "name": "The Golden Spoon II",
-      "address": "123 Murphy St",
-      "city": "Denver",
-      "state": "CO",
-      "zip": "80202",
-      "phone": "+1 (555) 555-7890",
-      "timezone": "America/Denver",
-      "currency": "USD",
-      "restaurant_type": "Casual Dining",
-      "opens_at": "10:00",
-      "closes_at": "22:00"
+      "address": "House 12, Road 5, Dhanmondi",
+      "city": "Dhaka",
+      "phone": "+880 1711-000000",
+      "timezone": "Asia/Dhaka",
+      "currency": "BDT"
   }
+}
+
+docs {
+  Required: name, address, city, timezone.
+  Optional: state, zip, phone, currency (defaults to USD), restaurant_type.
+  opens_at / closes_at are still accepted here, but the web wizard now sends
+  opening hours with Step 2.
 }
 
 script:post-response {

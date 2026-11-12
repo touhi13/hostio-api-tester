@@ -21,19 +21,20 @@ auth:bearer {
 body:json {
   {
       "total_tables": 20,
-      "max_party_size": 8,
-      "avg_turn_time_minutes": 60,
       "operating_hours": [
-          {
-              "day_of_week": 1,
-              "is_open": true,
-              "opens_at": "11:00",
-              "closes_at": "22:00"
-          },
-          {
-              "day_of_week": 7,
-              "is_open": false
-          }
+          { "day_of_week": 1, "is_open": true, "opens_at": "11:00", "closes_at": "22:00" },
+          { "day_of_week": 2, "is_open": true, "opens_at": "11:00", "closes_at": "22:00" },
+          { "day_of_week": 3, "is_open": true, "opens_at": "11:00", "closes_at": "22:00" },
+          { "day_of_week": 4, "is_open": true, "opens_at": "11:00", "closes_at": "22:00" },
+          { "day_of_week": 5, "is_open": true, "opens_at": "11:00", "closes_at": "22:00" },
+          { "day_of_week": 6, "is_open": true, "opens_at": "11:00", "closes_at": "22:00" },
+          { "day_of_week": 7, "is_open": false }
       ]
   }
+}
+
+docs {
+  Required: total_tables.
+  Optional: operating_hours, max_party_size (default 8), avg_turn_time_minutes
+  (default 60). The two reservation settings stay editable in Settings.
 }

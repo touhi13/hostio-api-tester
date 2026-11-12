@@ -20,7 +20,15 @@ body:json {
       "last_name": "Miller",
       "email": "newowner@example.com",
       "phone": "+15555550100",
+      "plan": "premium",
       "password": "Password1",
       "password_confirmation": "Password1"
   }
+}
+
+docs {
+  plan (optional): slug of the plan picked on the pricing page (free-trial, basic,
+  premium). It is saved on the account and comes back as selected_plan on
+  GET /onboarding/status, so the plan step can confirm it instead of asking again.
+  An unknown or retired slug is ignored - sign-up still succeeds.
 }
