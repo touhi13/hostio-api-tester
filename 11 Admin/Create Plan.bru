@@ -37,3 +37,11 @@ body:json {
       "sort_order": 3
   }
 }
+
+docs {
+  Modules with prerequisites (guide v67 §103.2): table_qr_ordering needs
+  online_ordering, purchasing needs inventory. Listing one without its
+  prerequisite returns 422 on features, e.g. "Purchasing needs Inventory.
+  Add it to the plan too." An empty or missing features list means core
+  POS only.
+}

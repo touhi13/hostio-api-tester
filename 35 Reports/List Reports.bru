@@ -17,3 +17,9 @@ headers {
 auth:bearer {
   token: {{token}}
 }
+
+docs {
+  Lists only reports the plan can open: inventory-cogs needs inventory,
+  customers needs crm (guide v67 §103.6). Opening a hidden one returns
+  403 PLAN_UPGRADE_REQUIRED.
+}
