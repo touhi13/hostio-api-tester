@@ -1,0 +1,28 @@
+meta {
+  name: Plan Change Impact
+  type: http
+  seq: 22
+}
+
+get {
+  url: {{base_url}}/api/v1/restaurants/{{restaurant_id}}/billing/plans/{{plan_id}}/impact
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+docs {
+  Owner or manager, flagship only (a branch gets 422 errors.subscription).
+  What moving to this plan changes (guide v68 §104.4): features_lost,
+  features_gained, limits (max_locations once, max_staff per location,
+  each with limit, used, over) and blockers. allowed false means
+  checkout, change-plan and admin change-plan refuse it with the same
+  blockers (422 errors.plan_id). Lost modules never block.
+}

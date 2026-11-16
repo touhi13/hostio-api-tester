@@ -24,4 +24,7 @@ body:json {
 docs {
   Requires loyalty_enabled on the restaurant and a customer on the order.
   Applies a flat discount worth points x loyalty_redeem_value.
+
+  422 errors.points when the plan lacks loyalty, even with loyalty_enabled
+  on; balances stay (guide v68 §104.2, mobile v25 §64.2).
 }

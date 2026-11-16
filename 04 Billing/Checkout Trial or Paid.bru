@@ -30,4 +30,7 @@ docs {
   Currency USD (and anything other than BDT) opens Stripe Checkout.
   Currency BDT opens bKash. The plan needs price_monthly_bdt or the API returns 422 plan_id.
   bKash does not auto-renew: each month the owner pays again. Change-plan is 422 for a bKash subscription; pay the new plan through this checkout instead.
+
+  Stripe and bKash checkout refuse a plan the business is over (422
+  errors.plan_id, same blockers as Plan Change Impact, guide v68 §104.4).
 }

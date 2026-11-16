@@ -26,3 +26,8 @@ script:post-response {
     bru.setEnvVar("gift_card_code", res.body.data.code);
   }
 }
+
+docs {
+  Needs the gift_cards plan feature, like List and Reload. Check Balance
+  and Pay With Gift Card work on every plan (guide v68 §104.1).
+}

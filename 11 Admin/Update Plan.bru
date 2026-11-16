@@ -27,4 +27,9 @@ body:json {
 docs {
   features follows the same prerequisite rule as Create Plan (guide v67
   §103.2): removing inventory while purchasing stays returns 422.
+
+  limits: {max_locations, max_staff}, integer 1-1000 or null = unlimited.
+  apply_to_existing (default false): push the edited features and limits
+  to subscriptions already on the plan; otherwise they keep their terms
+  (guide v68 §104.3, §104.5).
 }

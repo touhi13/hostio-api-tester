@@ -40,6 +40,10 @@ docs {
 
   schedule (optional, guide v38 §74.5): recurring shifts assigned when the
   invitation is accepted. Templates must be active templates of the restaurant.
+
+  422 errors.plan when the location's staff seats are used up (active
+  members + open invitations count against limits.max_staff, guide v68
+  §104.3).
 }
 
 script:post-response {
